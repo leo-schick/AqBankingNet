@@ -4,13 +4,13 @@ namespace Gwenhywfar;
 
 public class GWEN_Buffer
 {
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Buffer_new", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Buffer_new(int buffer, UInt32 size, UInt32 used, int take_ownership);
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Buffer_free", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar.so")]
     private static extern void GWEN_Buffer_free([In] IntPtr bf);
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Buffer_GetStart", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_Buffer_GetStart([In] IntPtr bf);
 

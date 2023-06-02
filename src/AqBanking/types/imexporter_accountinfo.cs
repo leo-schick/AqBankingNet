@@ -58,8 +58,7 @@ public class ImExporterAccountInfo
     private static extern string? AB_ImExporterAccountInfo_GetDescription(IntPtr p_struct);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    [return: MarshalAs(UnmanagedType.LPStr)]
-    private static extern string? AB_ImExporterAccountInfo_GetAccountType(IntPtr p_struct);
+    private static extern int AB_ImExporterAccountInfo_GetAccountType(IntPtr p_struct);
 
     [DllImport("libaqbanking.so")]
     private static extern UInt32 AB_ImExporterAccountInfo_GetAccountId(IntPtr p_struct);
@@ -74,52 +73,52 @@ public class ImExporterAccountInfo
     private static extern IntPtr AB_ImExporterAccountInfo_GetEStatementList(IntPtr p_struct);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetCountry(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetCountry(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetBankCode(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetBankCode(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetBankName(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetBankName(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetAccountNumber(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetAccountNumber(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetSubAccountId(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetSubAccountId(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetAccountName(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetAccountName(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetIban(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetIban(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetBic(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetBic(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetOwner(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetOwner(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetCurrency(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetCurrency(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetDescription(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
-
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern void AB_ImExporterAccountInfo_SetAccountType(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? _src);
+    private static extern void AB_ImExporterAccountInfo_SetDescription(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so")]
-    private static extern void AB_ImExporterAccountInfo_SetAccountId(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] UInt32 _src);
+    private static extern void AB_ImExporterAccountInfo_SetAccountType(IntPtr p_struct, int p_src);
 
     [DllImport("libaqbanking.so")]
-    private static extern void AB_ImExporterAccountInfo_SetBalanceList(IntPtr p_struct, IntPtr _src);
+    private static extern void AB_ImExporterAccountInfo_SetAccountId(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] UInt32 p_src);
 
     [DllImport("libaqbanking.so")]
-    private static extern void AB_ImExporterAccountInfo_SetTransactionList(IntPtr p_struct, IntPtr _src);
+    private static extern void AB_ImExporterAccountInfo_SetBalanceList(IntPtr p_struct, IntPtr p_src);
 
     [DllImport("libaqbanking.so")]
-    private static extern void AB_ImExporterAccountInfo_SetEStatementList(IntPtr p_struct, IntPtr _src);
+    private static extern void AB_ImExporterAccountInfo_SetTransactionList(IntPtr p_struct, IntPtr p_src);
+
+    [DllImport("libaqbanking.so")]
+    private static extern void AB_ImExporterAccountInfo_SetEStatementList(IntPtr p_struct, IntPtr p_src);
 
     [DllImport("libaqbanking.so")]
     private static extern void AB_ImExporterAccountInfo_Clear(IntPtr p_struct);
@@ -145,6 +144,11 @@ public class ImExporterAccountInfo
     public ImExporterAccountInfo()
     {
         _imExporterAccountInfo = AB_ImExporterAccountInfo_new();
+    }
+
+    internal ImExporterAccountInfo(IntPtr ptr)
+    {
+        _imExporterAccountInfo = ptr;
     }
 
     ~ImExporterAccountInfo()
@@ -218,10 +222,10 @@ public class ImExporterAccountInfo
         set => AB_ImExporterAccountInfo_SetDescription(this._imExporterAccountInfo, value);
     }
 
-    public string? AccountType
+    public AccountType AccountType
     {
-        get => AB_ImExporterAccountInfo_GetAccountType(this._imExporterAccountInfo);
-        set => AB_ImExporterAccountInfo_SetAccountType(this._imExporterAccountInfo, value);
+        get => (AccountType)AB_ImExporterAccountInfo_GetAccountType(this._imExporterAccountInfo);
+        set => AB_ImExporterAccountInfo_SetAccountType(this._imExporterAccountInfo, (int)value);
     }
 
     public UInt32 AccountId
@@ -238,8 +242,8 @@ public class ImExporterAccountInfo
 
     public TransactionList TransactionList
     {
-        get => new TransactionList(AB_ImExporterAccountInfo_GetTransactionList(this._imExporterAccountInfo));
-        set => AB_ImExporterAccountInfo_SetTransactionList(this._imExporterAccountInfo, value._transactionList);
+        get => new(AB_ImExporterAccountInfo_GetTransactionList(this._imExporterAccountInfo));
+        set => AB_ImExporterAccountInfo_SetTransactionList(this._imExporterAccountInfo, (IntPtr)value);
     }
 
     public DocumentList EStatementList
@@ -250,17 +254,17 @@ public class ImExporterAccountInfo
 
     public void AddTransaction(Transaction transaction)
     {
-        AB_ImExporterAccountInfo_AddTransaction(this._imExporterAccountInfo, transaction._transaction);
+        AB_ImExporterAccountInfo_AddTransaction(this._imExporterAccountInfo, (IntPtr)transaction);
     }
 
     public void AddBalance(Balance balance)
     {
-        AB_ImExporterAccountInfo_AddBalance(this._imExporterAccountInfo, balance._balance);
+        AB_ImExporterAccountInfo_AddBalance(this._imExporterAccountInfo, (IntPtr)balance);
     }
 
     public void AddEStatement(Document document)
     {
-        AB_ImExporterAccountInfo_AddEStatement(this._imExporterAccountInfo, document._document);
+        AB_ImExporterAccountInfo_AddEStatement(this._imExporterAccountInfo, (IntPtr)document);
     }
 
     /// <summary>
@@ -273,6 +277,8 @@ public class ImExporterAccountInfo
 
     public void FillFromTransaction(Transaction transaction)
     {
-        AB_ImExporterAccountInfo_FillFromTransaction(this._imExporterAccountInfo, transaction._transaction);
+        AB_ImExporterAccountInfo_FillFromTransaction(this._imExporterAccountInfo, (IntPtr)transaction);
     }
+    
+    public static explicit operator IntPtr(ImExporterAccountInfo accountInfo) => accountInfo._imExporterAccountInfo;
 }

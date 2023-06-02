@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections;
+using System.Runtime.InteropServices;
 using Gwenhywfar;
 
 namespace AqBanking;
@@ -46,11 +47,16 @@ public class Balance
 
     #endregion
 
-    internal readonly IntPtr _balance;
+    private readonly IntPtr _balance;
 
     public Balance()
     {
         this._balance = AB_Balance_new();
+    }
+
+    internal Balance(IntPtr balance)
+    {
+        this._balance = balance;
     }
 
     ~Balance()
@@ -66,7 +72,7 @@ public class Balance
 
     public Value Value
     {
-        get => new Value(AB_Balance_GetValue(this._balance));
+        get => new(AB_Balance_GetValue(this._balance));
         set => AB_Balance_SetValue(this._balance, value._value);
     }
 
@@ -75,10 +81,19 @@ public class Balance
         get => AB_Balance_GetType(this._balance);
         set => AB_Balance_SetType(this._balance, value);
     }
+    
+    public static explicit operator IntPtr(Balance balance) => balance._balance;
 }
 
 public class BalanceList
 {
+    #region DLL Imports
+
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_Balance_List_GetByType(IntPtr p_list, BalanceType p_cmp);
+
+    #endregion
+    
     internal readonly IntPtr _balanceList;
 
     public BalanceList(IntPtr balanceList)
@@ -86,5 +101,103 @@ public class BalanceList
         this._balanceList = balanceList;
     }
 
-    // TODO: furhter implementation missing here
+    public Balance GetByType(BalanceType type)
+    {
+        return new Balance(AB_Balance_List_GetByType(this._balanceList, type));
+    }
+    
+    internal class TypedEnumerable : IEnumerable<Balance>
+    {
+        private readonly IntPtr _balanceList;
+        private readonly BalanceType _balanceType;
+
+        internal TypedEnumerable(IntPtr balanceList, BalanceType balanceType)
+        {
+            _balanceList = balanceList;
+            _balanceType = balanceType;
+        }
+        
+        public IEnumerator<Balance> GetEnumerator()
+        {
+            return new BalanceListEnumerator(_balanceList, _balanceType);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+
+    public IEnumerable<Balance> AsEnumerable(BalanceType balanceType)
+    {
+        return new TypedEnumerable(_balanceList, balanceType);
+    }
+
+    // TODO: further implementation missing here
+}
+
+internal class BalanceListEnumerator : IEnumerator<Balance>
+{
+    #region DLL Imports
+    
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_Balance_List_FindFirstByType(IntPtr bl, BalanceType ty);
+
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_Balance_List_FindNextByType(IntPtr bl, BalanceType ty);
+
+    //[DllImport("libaqbanking.so")]
+    //private static extern IntPtr AB_Balance_List_GetLatestByType(IntPtr bl, BalanceType ty);
+
+    #endregion
+    
+    private readonly IntPtr _balanceList;
+    private readonly BalanceType _balanceType;
+    private Balance? _current;
+    
+    internal BalanceListEnumerator(IntPtr balanceList, BalanceType balanceType)
+    {
+        _balanceList = balanceList;
+        _balanceType = balanceType;
+    }
+    
+    public bool MoveNext()
+    {
+        IntPtr newAccount = default;
+        if (_current == null)
+        {
+            newAccount = AB_Balance_List_FindFirstByType(this._balanceList, this._balanceType);
+        }
+        else
+        {
+            newAccount = AB_Balance_List_FindNextByType((IntPtr)this._current, this._balanceType);
+        }
+
+        if (newAccount == default)
+            return false;
+        
+        _current = new Balance(newAccount);
+        return true;
+    }
+
+    public void Reset()
+    {
+        _current = null;
+    }
+
+    public Balance Current
+    {
+        get
+        {
+            if (_current == null)
+                throw new InvalidOperationException();
+            return _current;
+        }
+    }
+
+    object IEnumerator.Current => Current;
+
+    public void Dispose()
+    {
+    }
 }

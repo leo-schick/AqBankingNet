@@ -13,29 +13,25 @@ public class GwenDate
 {
     #region DLL Imports
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_fromGregorian", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Date_fromGregorian(int y, int m, int d);
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_fromJulian", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_Date_fromJulian(int julian);
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_free", CharSet = CharSet.Ansi)]
-    private static extern IntPtr GWEN_Date_free(IntPtr gd);
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern void GWEN_Date_free(IntPtr gd);
     
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_GetString", CharSet = CharSet.Ansi)]
-    [return: MarshalAs(UnmanagedType.LPStr)]
-    private static extern string? GWEN_Date_GetString(IntPtr gd);
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern IntPtr GWEN_Date_GetString(IntPtr gd);
     
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_GetYear")]
-    [return: MarshalAs(UnmanagedType.LPStr)]
+    [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_Date_GetYear(IntPtr gd);
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_GetMonth")]
-    [return: MarshalAs(UnmanagedType.LPStr)]
+    [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_Date_GetMonth(IntPtr gd);
 
-    [DllImport("libgwenhywfar.so", EntryPoint = "GWEN_Date_GetDay")]
-    [return: MarshalAs(UnmanagedType.LPStr)]
+    [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_Date_GetDay(IntPtr gd);
 
     #endregion
@@ -102,6 +98,7 @@ public class GwenDate
 
     public override string ToString()
     {
-        return GWEN_Date_GetString(this._date) ?? string.Empty;
+        IntPtr ptr = GWEN_Date_GetString(this._date);
+        return Marshal.PtrToStringAuto(ptr) ?? string.Empty;
     }
 }

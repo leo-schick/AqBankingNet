@@ -66,7 +66,7 @@ public partial class Banking
     /// 
     public void SendCommands(TransactionList commandList, ImExporterContext context)
     {
-        int returnValue = AB_Banking_SendCommands(this._banking, commandList._transactionList, context._context);
+        int returnValue = AB_Banking_SendCommands(this._banking, (IntPtr)commandList, context._context);
         ErrorHandling.CheckForErrors(returnValue, "Error on executeQueue ({0})");
     }
     

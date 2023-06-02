@@ -33,18 +33,24 @@ public class Document
     [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetMimeType", CharSet = CharSet.Ansi)]
     public static extern void AB_Document_SetMimeType(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetData")]
+    [DllImport("libaqbanking.so")]
     public static extern void AB_Document_SetData(IntPtr p_struct, IntPtr p, UInt32 len);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetData")]
+    [DllImport("libaqbanking.so")]
     public static extern void AB_Document_GetDataPtr(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetData")]
-    public static extern UInt32 AB_Document_GetDataLen(IntPtr p_struct);
+    [DllImport("libaqbanking.so")]
+    public static extern void AB_Document_SetAcknowledgeCode(IntPtr st, byte p, UInt32 len);
+
+    [DllImport("libaqbanking.so")]
+    public static extern byte AB_Document_GetAcknowledgeCodePtr(IntPtr st);
+
+    [DllImport("libaqbanking.so")]
+    public static extern UInt32 AB_Document_GetAcknowledgeCodeLen(IntPtr st);
 
     #endregion
 
-    internal readonly IntPtr _document;
+    private readonly IntPtr _document;
 
     public Document()
     {
@@ -88,7 +94,8 @@ public class Document
             throw new NotImplementedException();
         }
     }
-
+    
+    public static explicit operator IntPtr(Document document) => document._document;
 }
 
 public class DocumentList

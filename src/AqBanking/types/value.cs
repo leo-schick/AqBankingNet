@@ -17,7 +17,7 @@ public class Value : IEquatable<Value>, IComparable<Value>
     private static extern IntPtr AB_Value_fromString([In, MarshalAs(UnmanagedType.LPStr)] string s);
 
     [DllImport("libaqbanking.so", EntryPoint = "AB_Value_toString")]
-    private static extern void AB_Value_toString(IntPtr v, GWEN_Buffer buf);
+    private static extern void AB_Value_toString(IntPtr v, IntPtr buf);
 
     // TBD:
     // AB_Value_toHumanReadableString
@@ -214,7 +214,7 @@ public class Value : IEquatable<Value>, IComparable<Value>
     public override string ToString()
     {
         var buf = new GWEN_Buffer(0, 129, 0, true);
-        AB_Value_toString(this._value, buf);
+        AB_Value_toString(_value, (IntPtr)buf);
         return buf.GetStart() ?? string.Empty;
     }
 

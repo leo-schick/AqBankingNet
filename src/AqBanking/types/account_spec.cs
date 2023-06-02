@@ -1,32 +1,17 @@
-using System.Collections;
 using System.Runtime.InteropServices;
+using Gwenhywfar;
 
 namespace AqBanking;
 
 public class Account
 {
-    internal readonly IntPtr _account;
-
-    internal Account(IntPtr account)
-    {
-        this._account = account;
-    }
-
+    #region DLL Imports
+    
     [DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_new")]
     private static extern IntPtr AB_AccountSpec_new();
 
-    public Account()
-    {
-        this._account = AB_AccountSpec_new();
-    }
-
     [DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_new")]
     private static extern void AB_AccountSpec_free(IntPtr p_struct);
-
-    ~Account()
-    {
-        AB_AccountSpec_free(this._account);
-    }
 
     [DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_GetType")]
     private static extern int AB_AccountSpec_GetType(IntPtr p_struct);
@@ -137,6 +122,31 @@ public class Account
 
     //[DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_SetTransactionLimitsList")]
     //private static extern void AB_AccountSpec_SetTransactionLimitsList(IntPtr p_struct, [In] string? p_src);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_AccountSpec_GetTransactionLimitsForCommand(IntPtr st, TransactionCommand cmd);
+
+    [DllImport("libaqbanking.so")]
+    private static extern void AB_AccountSpec_AddTransactionLimits(IntPtr st, IntPtr l);
+
+    #endregion
+    
+    private readonly IntPtr _account;
+
+    internal Account(IntPtr account)
+    {
+        this._account = account;
+    }
+
+    public Account()
+    {
+        this._account = AB_AccountSpec_new();
+    }
+
+    ~Account()
+    {
+        AB_AccountSpec_free(this._account);
+    }
 
     public int Type
     {
@@ -233,89 +243,74 @@ public class Account
     //    get => ...;
     //    set => ...;
     //}
+
+    public TransactionLimits GetTransactionLimitsForCommand(TransactionCommand command)
+    {
+        return new TransactionLimits(AB_AccountSpec_GetTransactionLimitsForCommand(this._account, command));
+    }
+
+    public void AddTransactionLimits(TransactionLimits limits)
+    {
+        AB_AccountSpec_AddTransactionLimits(this._account, (IntPtr)limits);
+    }
+    
+    public static explicit operator IntPtr(Account account) => account._account;
 }
 
-public class AccountList : IEnumerable<Account>
+public class AccountList : GwenList<Account>
 {
+    #region DLL Imports
+
     [DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_List_free")]
     private static extern IntPtr AB_AccountSpec_List_free(IntPtr accs);
 
-    private IntPtr _accountSpecList;
+    #endregion
 
     internal AccountList(IntPtr accountSpecList)
+        : base(accountSpecList)
     {
-        this._accountSpecList = accountSpecList;
     }
 
     ~AccountList()
     {
-        AB_AccountSpec_List_free(this._accountSpecList);
+        AB_AccountSpec_List_free(ListPtr);
     }
 
-    public IEnumerator<Account> GetEnumerator()
+    public override IEnumerator<Account> GetEnumerator()
     {
-        return new AccountListEnumerator(_accountSpecList);
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return this.GetEnumerator();
+        return new AccountListEnumerator(ListPtr);
     }
 }
 
-internal class AccountListEnumerator : IEnumerator<Account>
+internal class AccountListEnumerator : GwenListEnumerator<Account>
 {
-    [DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_List_First")]
+    #region DLL Imports
+
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_AccountSpec_List_First(IntPtr accs);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_AccountSpec_List_Next")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_AccountSpec_List_Next(IntPtr accs);
 
-    private IntPtr _accountSpecList;
-    private Account? _current;
+    #endregion
 
     internal AccountListEnumerator(IntPtr accountSpecList)
-    {
-        this._accountSpecList = accountSpecList;
-    }
-
-    public Account Current
-    {
-        get
-        {
-            if (_current == null)
-                throw new InvalidOperationException();
-            return _current;
-        }
-    }
-
-    object IEnumerator.Current => this.Current;
-
-    public void Dispose()
+        : base(accountSpecList)
     {
     }
 
-    public bool MoveNext()
+    protected override IntPtr FirstInternal()
     {
-        IntPtr newAccount = default;
-        if (_current == null)
-        {
-            newAccount = AB_AccountSpec_List_First(this._accountSpecList);
-        }
-        else
-        {
-            newAccount = AB_AccountSpec_List_Next(this._current._account);
-        }
-
-        if (newAccount == default)
-            return false;
-        
-        _current = new Account(newAccount);
-        return true;
+        return AB_AccountSpec_List_First(ListPtr);
     }
 
-    public void Reset()
+    protected override IntPtr NextInternal(IntPtr last)
     {
-        _current = null;
+        return AB_AccountSpec_List_Next(last);
+    }
+
+    protected override Account NewInternal(IntPtr ptr)
+    {
+        return new Account(ptr);
     }
 }

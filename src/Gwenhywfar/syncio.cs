@@ -41,6 +41,9 @@ public class SyncIO : IDisposable
     private static extern int GWEN_SyncIo_Flush(IntPtr sio);
 
     [DllImport("libgwenhywfar.so")]
+    private static extern int GWEN_SyncIo_Read(IntPtr sio, [MarshalAs(UnmanagedType.LPArray)] byte[] buffer, uint size);
+
+    [DllImport("libgwenhywfar.so")]
     private static extern uint GWEN_SyncIo_GetFlags(IntPtr sio);
     [DllImport("libgwenhywfar.so")]
     private static extern void GWEN_SyncIo_SetFlags(IntPtr sio, uint fl);
@@ -100,6 +103,13 @@ public class SyncIO : IDisposable
         int returnValue = GWEN_SyncIo_Flush(this._syncIO);
         if (returnValue != 0)
             throw new IOException($"Failed to flush. Code: {returnValue}");
+    }
+
+    public void Read(byte[] buffer, uint size)
+    {
+        int returnValue = GWEN_SyncIo_Read(this._syncIO, buffer, size);
+        if (returnValue != 0)
+            throw new IOException($"Failed read stream IO. Code: {returnValue}");
     }
 
     public uint Flags

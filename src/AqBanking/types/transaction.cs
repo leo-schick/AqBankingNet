@@ -647,6 +647,9 @@ public class Transaction
     [DllImport("libaqbanking.so", EntryPoint = "AB_Transaction_SetHash", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetHash(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_Transaction_fromDb(IntPtr p_db);
+    
     #endregion
 
     private readonly IntPtr _transaction;
@@ -661,7 +664,7 @@ public class Transaction
         this._transaction = ptr;
     }
 
-~Transaction()
+    ~Transaction()
     {
         AB_Transaction_free(this._transaction);
     }
@@ -1102,6 +1105,11 @@ public class Transaction
     {
         get => AB_Transaction_GetHash(this._transaction);
         set => AB_Transaction_SetHash(this._transaction, value);
+    }
+
+    public static Transaction FromDb(GwenDbNode db)
+    {
+        return new Transaction(AB_Transaction_fromDb((IntPtr)db));
     }
     
     public static explicit operator IntPtr(Transaction transaction) => transaction._transaction;

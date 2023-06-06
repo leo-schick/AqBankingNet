@@ -174,7 +174,7 @@ public partial class Banking : IDisposable
     {
         get
         {
-            var buf = new GWEN_Buffer(0, 256, 0, true);
+            var buf = new GwenBuffer(0, 256, 0, true);
             int returnValue = AB_Banking_GetUserDataDir(this._banking, buf);
             ErrorHandling.CheckForErrors(returnValue);
             return buf.GetStart();
@@ -193,7 +193,7 @@ public partial class Banking : IDisposable
     /// <returns></returns>
     public string? GetSharedDataDir(string name)
     {
-        var buf = new GWEN_Buffer(0, 256, 0, true);
+        var buf = new GwenBuffer(0, 256, 0, true);
         int returnValue = AB_Banking_GetSharedDataDir(this._banking, name, buf);
         ErrorHandling.CheckForErrors(returnValue);
         return buf.GetStart();

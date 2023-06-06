@@ -213,7 +213,7 @@ public class Value : IEquatable<Value>, IComparable<Value>
 
     public override string ToString()
     {
-        var buf = new GWEN_Buffer(0, 129, 0, true);
+        var buf = new GwenBuffer(0, 129, 0, true);
         AB_Value_toString(_value, (IntPtr)buf);
         return buf.GetStart() ?? string.Empty;
     }

@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 
 namespace Gwenhywfar;
 
-public class GWEN_Buffer
+public class GwenBuffer
 {
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Buffer_new(int buffer, UInt32 size, UInt32 used, int take_ownership);
@@ -16,12 +16,12 @@ public class GWEN_Buffer
 
     private IntPtr _buffer;
 
-    public GWEN_Buffer(int buffer, UInt32 size, UInt32 used, bool takeOwnership)
+    public GwenBuffer(int buffer, UInt32 size, UInt32 used, bool takeOwnership)
     {
         this._buffer = GWEN_Buffer_new(buffer, size, used, takeOwnership ? 1 : 0);
     }
 
-    ~GWEN_Buffer()
+    ~GwenBuffer()
     {
         GWEN_Buffer_free(this._buffer);
     }
@@ -31,7 +31,7 @@ public class GWEN_Buffer
         return GWEN_Buffer_GetStart(this._buffer);
     }
 
-    public static implicit operator IntPtr(GWEN_Buffer buf) => buf._buffer;
+    public static implicit operator IntPtr(GwenBuffer buf) => buf._buffer;
 
     public override string? ToString()
     {

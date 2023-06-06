@@ -21,28 +21,28 @@ public class Balance
 {
     #region DLL Imports
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_new")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Balance_new();
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_free")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Balance_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_GetDate")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Balance_GetDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_GetValue")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Balance_GetValue(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_GetType")]
+    [DllImport("libaqbanking.so")]
     private static extern BalanceType AB_Balance_GetType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_SetDate")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Balance_SetDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_SetValue")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Balance_SetValue(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Balance_SetType")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Balance_SetType(IntPtr p_struct, BalanceType p_src);
 
     #endregion
@@ -150,17 +150,17 @@ internal class BalanceListEnumerator : IEnumerator<Balance>
     //private static extern IntPtr AB_Balance_List_GetLatestByType(IntPtr bl, BalanceType ty);
 
     #endregion
-    
+
     private readonly IntPtr _balanceList;
     private readonly BalanceType _balanceType;
     private Balance? _current;
-    
+
     internal BalanceListEnumerator(IntPtr balanceList, BalanceType balanceType)
     {
         _balanceList = balanceList;
         _balanceType = balanceType;
     }
-    
+
     public bool MoveNext()
     {
         IntPtr newAccount = default;

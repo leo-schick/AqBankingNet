@@ -44,7 +44,7 @@ public class ImExporterContext
     
     [DllImport("libaqbanking.so")]
     private static extern void AB_ImExporterContext_AddSecurity(IntPtr st, IntPtr sec);
-    
+
     [DllImport("libaqbanking.so")]
     private static extern void AB_ImExporterContext_AddMessage(IntPtr st, IntPtr msg);
     
@@ -89,13 +89,13 @@ public class ImExporterContext
         get => new(AB_ImExporterContext_GetSecurityList(_context));
         set => AB_ImExporterContext_SetSecurityList(_context, (IntPtr)value);
     }
-    
+
     public ImExporterList<Message> MessageList
     {
         get => new(AB_ImExporterContext_GetMessageList(_context));
         set => AB_ImExporterContext_SetMessageList(_context, (IntPtr)value);
     }
-    
+
     public void AddSecurity(Security security)
     {
         AB_ImExporterContext_AddSecurity(this._context, (IntPtr)security);
@@ -105,7 +105,7 @@ public class ImExporterContext
     {
         AB_ImExporterContext_AddMessage(_context, (IntPtr)message);
     }
-    
+
     public void AddTransaction(Transaction transaction)
     {
         AB_ImExporterContext_AddTransaction(this._context, (IntPtr)transaction);
@@ -115,7 +115,7 @@ public class ImExporterContext
     {
         return new ImExporterContext(AB_ImExporterContext_fromDb((IntPtr)node));
     }
-    
+
     public void ToDb(GwenDbNode node)
     {
         int returnValue = AB_ImExporterContext_toDb(this._context, (IntPtr)node);

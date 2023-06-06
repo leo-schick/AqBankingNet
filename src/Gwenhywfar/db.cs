@@ -1,3 +1,5 @@
+using System.Collections;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Gwenhywfar;
@@ -158,43 +160,175 @@ public class GwenDbNode
 {
     #region DLL Imports
 
-    // Variable Getter and Setter
+    // Iterating Through Groups
     [DllImport("libgwenhywfar.so")]
+    private static extern IntPtr GWEN_DB_GetFirstGroup(IntPtr n);
+    [DllImport("libgwenhywfar.so")]
+    private static extern IntPtr GWEN_DB_GetNextGroup(IntPtr n);
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern IntPtr GWEN_DB_FindFirstGroup(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? name);
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern IntPtr GWEN_DB_FindNextGroup(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? name);
+
+    // Variable Getter and Setter
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_DB_GetCharValue(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? path, int idx, [MarshalAs(UnmanagedType.LPStr)] string? defVal);
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_SetCharValue(IntPtr n, uint flags, [MarshalAs(UnmanagedType.LPStr)] string? path, [MarshalAs(UnmanagedType.LPStr)] string? val);
 
     // Reading and Writing From/To IO Layers
     
     // Not implemented:
     //  - GWEN_DB_ReadFromFastBuffer
-    
+
     [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_DB_ReadFromIo(IntPtr n, IntPtr sio, uint dbflags);
 
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_ReadFile(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? fname, uint dbflags);
-    
+
     // Not implemented:
     //  - GWEN_DB_ReadFromString
     //  - GWEN_DB_WriteToFastBuffer
-    
+
     [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_DB_WriteToIo(IntPtr node, IntPtr sio, uint dbflags);
-    
+
     [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_DB_WriteFile(IntPtr node, [MarshalAs(UnmanagedType.LPStr)] string? fname, uint dbflags);
-    
-    // Not implemented:
-    //  - GWEN_DB_WriteToBuffer
 
+    [DllImport("libgwenhywfar.so")]
+    private static extern int GWEN_DB_WriteToBuffer(IntPtr n, IntPtr buf, uint dbflags);
+
+    // Group Handling
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [return: MarshalAs(UnmanagedType.LPStr)]
+    private static extern string? GWEN_DB_GroupName(IntPtr n);
+
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern void GWEN_DB_GroupRename(IntPtr n, string? newname);
+
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern int GWEN_DB_IsGroup(IntPtr n);
+    
     #endregion
     
     protected GwenDbNode(IntPtr dbNode)
     {
         this._dbNode = dbNode;
     }
+
+    protected readonly IntPtr _dbNode;
+    
+    public static explicit operator IntPtr(GwenDbNode n) => n._dbNode;
+    public static explicit operator GwenDbNode(IntPtr p) => new GwenDbNode(p);
+
+    #region Iterating Through Groups
+
+    /// <summary>
+    /// Returns the first group node below the given one.
+    ///
+    /// If there is no group node then NULL is returned. This can either
+    /// mean that this node does not have any children or the only
+    /// children are variables instead of groups.
+    /// </summary>
+    public GwenDbGroup? GetFirstGroup()
+    {
+        IntPtr node = GWEN_DB_GetFirstGroup(this._dbNode);
+        return node == default ? null : (GwenDbGroup)node;
+    }
+
+    /// <summary>
+    /// Returns the next group node following the given one, which has the
+    /// same parent node.
+    /// 
+    /// This function works absolutely independently of the group nodes'
+    /// names -- the returned node may or may not have the same name as the
+    /// specified node. The only guarantee is that the returned node will
+    /// be a group node.
+    /// 
+    /// If there is no group node then NULL is returned. This can either
+    /// mean that the parent node does not have any further
+    /// children, or that the other children are variables instead
+    /// of groups.
+    /// 
+    /// <remarks>
+    /// This is one of the few functions where the returned node is <c>e</c> not
+    /// the child of the specified node, but instead it is the next node
+    /// with the same parent node. In other words, this function is an
+    /// exception. In most other functions the returned node is a child of
+    /// the specified node.
+    /// </remarks>
+    /// </summary>
+    public GwenDbGroup? GetNextGroup()
+    {
+        IntPtr node = GWEN_DB_GetNextGroup(this._dbNode);
+        return node == default ? null : (GwenDbGroup)node;
+    }
+
+    /// <summary>
+    /// Returns the first group node below the given one by name.
+    /// 
+    /// If there is no matching group node then NULL is returned. This can either
+    /// mean that this node does not have any children or the only
+    /// children are variables instead of groups or their is no group of the
+    /// given name.
+    /// </summary>
+    /// <param name="name">name to look for (joker and wildcards allowed)</param>
+    public GwenDbGroup? FindFirstGroup(string name)
+    {
+        IntPtr node = GWEN_DB_FindFirstGroup(this._dbNode, name);
+        return node == default ? null : (GwenDbGroup)node;
+    }
+
+    /// <summary>
+    /// Returns the next group node following the given one, which has the
+    /// same parent node, by name.
+    /// 
+    /// If there is no matching group node then NULL is returned. This can either
+    /// mean that the parent node does not have any further
+    /// children, or that the other children are variables instead
+    /// of groups or that there is no group with the given name.
+    /// 
+    /// <remarks>
+    /// This is one of the few functions where the returned node is <c>e</c> not
+    /// the child of the specified node, but instead it is the next node
+    /// with the same parent node. In other words, this function is an
+    /// exception. In most other functions the returned node is a child of
+    /// the specified node.
+    /// </remarks>
+    /// </summary>
+    /// <param name="name">name to look for (joker and wildcards allowed)</param>
+    public GwenDbGroup? FindNextGroup(string name)
+    {
+        IntPtr node = GWEN_DB_FindNextGroup(this._dbNode, name);
+        return node == default ? null : (GwenDbGroup)node;
+    }
+
+    private class GwenDbNodeGroupsEnumerable : IEnumerable<GwenDbGroup>
+    {
+        private readonly GwenDbNode _node;
+
+        public GwenDbNodeGroupsEnumerable(GwenDbNode node)
+            => _node = node;
+        
+        public IEnumerator<GwenDbGroup> GetEnumerator()
+        {
+            return new GwenDbNodeGroupsIterator(_node);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+    
+    public IEnumerable<GwenDbGroup> Groups => new GwenDbNodeGroupsEnumerable(this);
+
+    #endregion
+
+    #region Variable Getter and Setter
 
     /// <summary>
     /// Returns the variable's retrieved value.
@@ -207,10 +341,7 @@ public class GwenDbNode
         return GWEN_DB_GetCharValue(this._dbNode, path, idx, defVal);
     }
 
-    protected readonly IntPtr _dbNode;
-    
-    public static explicit operator IntPtr(GwenDbNode n) => n._dbNode;
-    public static explicit operator GwenDbNode(IntPtr p) => new GwenDbNode(p);
+    #endregion
 
     #region Reading and Writing From/To IO Layers
     
@@ -257,30 +388,117 @@ public class GwenDbNode
         if (returnValue != 0)
             throw new IOException($"Error writing to file: {returnValue}");
     }
+
+    public void WriteToBuffer(GwenBuffer buffer, uint dbFlags)
+    {
+        int returnValue = GWEN_DB_WriteToBuffer(this._dbNode, (IntPtr)buffer, dbFlags);
+        if (returnValue != 0)
+            throw new IOException($"Error writing to buffer: {returnValue}");
+    }
     
+    #endregion
+
+    #region Group Handling
+
+    /// <summary>
+    /// Returns or renames the name of the given group.
+    /// </summary>
+    public string? GroupName
+    {
+        get => GWEN_DB_GroupName(this._dbNode);
+        set => GWEN_DB_GroupRename(this._dbNode, value);
+    }
+    
+    /// <summary>
+    /// Predicate: Returns nonzero (TRUE) or zero (FALSE) if the given
+    /// NODE is a Group or not. Usually these group nodes are the only
+    /// nodes that the application gets in touch with.
+    /// </summary>
+    public bool IsGroup => GWEN_DB_IsGroup(this._dbNode) != 0;
+
     #endregion
 }
 
 public class GwenDbGroup : GwenDbNode
 {
+    #region DLL Imports
+
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_DB_Group_new([In, MarshalAs(UnmanagedType.LPStr)] string name);
 
     [DllImport("libgwenhywfar.so")]
     private static extern void GWEN_DB_Group_free(IntPtr n);
 
-    protected GwenDbGroup(GwenDbNode dbNode)
-        : base((IntPtr)dbNode)
+    #endregion
+
+    private GwenDbGroup(IntPtr intPtr)
+        : base(intPtr)
     {
     }
-    
+
     public GwenDbGroup(string name)
         : base(GWEN_DB_Group_new(name))
     {
+    }
+    
+    public static explicit operator IntPtr(GwenDbGroup n) => n._dbNode;
+    public static explicit operator GwenDbGroup(IntPtr p) => new(p);
+
+    public static GwenDbNode FromDbNode(GwenDbNode dbNode)
+    {
+        if (!dbNode.IsGroup)
+            throw new ArgumentException("The node passed in parameter dbNode must be a group node", nameof(dbNode));
+
+        return new GwenDbGroup((IntPtr)dbNode);
     }
 
     ~GwenDbGroup()
     {
         GWEN_DB_Group_free(this._dbNode);
+    }
+}
+
+internal class GwenDbNodeGroupsIterator : IEnumerator<GwenDbGroup>
+{
+    private readonly GwenDbNode _dbNode;
+    private GwenDbGroup? _currentGroup;
+    public GwenDbNodeGroupsIterator(GwenDbNode node)
+    {
+        _dbNode = node;
+    }
+    
+    public bool MoveNext()
+    {
+        if (_currentGroup == null)
+        {
+            _currentGroup = _dbNode.GetFirstGroup();
+        }
+        else
+        {
+            _currentGroup = _currentGroup.GetNextGroup();
+        }
+
+        return _currentGroup != null;
+    }
+
+    public void Reset()
+    {
+        _currentGroup = null;
+    }
+
+    public GwenDbGroup Current
+    {
+        get
+        {
+            if (_currentGroup == null)
+                throw new InvalidOperationException();
+            return _currentGroup;
+        }
+    }
+
+    object? IEnumerator.Current => _currentGroup;
+
+    public void Dispose()
+    {
     }
 }

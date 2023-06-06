@@ -26,7 +26,7 @@ public partial class Banking
 
     public static string? MakeGermanIban(string bankCode, string accountNumber)
     {
-        var ibanBuf = new GWEN_Buffer(0, 35, 0, true);
+        var ibanBuf = new GwenBuffer(0, 35, 0, true);
         int returnValue = AB_Banking_MakeGermanIban(bankCode, accountNumber, ibanBuf);
         ErrorHandling.CheckForErrors(returnValue);
         return ibanBuf.GetStart();

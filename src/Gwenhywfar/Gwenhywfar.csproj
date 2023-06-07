@@ -5,6 +5,18 @@
     <RootNamespace>Gwenhywfar</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ProductVersion>5.6.0</ProductVersion>
+    <Version>5.6.0.1</Version>
+    <Authors>Martin Preuss; Leonhard Schick</Authors>
+    <PackageProjectUrl>https://www.aqbanking.de/</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/leo-schick/AqBankingNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="docs\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

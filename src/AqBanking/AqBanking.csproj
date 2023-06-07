@@ -5,10 +5,22 @@
     <RootNamespace>AqBanking</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ProductVersion>6.2.10</ProductVersion>
+    <Version>6.2.10.1</Version>
+    <Authors>Martin Preuss; Leonhard Schick</Authors>
+    <PackageProjectUrl>https://www.aqbanking.de/</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>GPL-3.0-or-later OR GPL-2.0-or-later</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/leo-schick/AqBankingNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="../Gwenhywfar/Gwenhywfar.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="docs\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

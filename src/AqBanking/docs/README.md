@@ -110,6 +110,11 @@ This backend uses Paypal's native API for retrieving transactions.
 This is a fallback module which can be used by applications for accounts which
 are not managed by any online banking backend.
 
+Versioning
+----------
+The library versioning follows the versioning of the library _aqbanking_ it has been
+tested with, with an additional [Revision](https://learn.microsoft.com/en-us/dotnet/api/system.version) part
+which represents the version of this wrapper library and is incremented at each new release.
 
 Install
 -------

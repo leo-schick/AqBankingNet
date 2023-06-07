@@ -44,6 +44,12 @@ Gwenhywfar includes the following features:
   usage counter handling, modification tracking, functions for reading from 
   and writing to GWEN_DBs (used by AqBanking to create the transaction class)
 
+Versioning
+----------
+The library versioning follows the versioning of the library _gwenhywfar_ it has been
+tested with, with an additional [Revision](https://learn.microsoft.com/en-us/dotnet/api/system.version) part
+which represents the version of this wrapper library and is incremented at each new release.
+
 Install
 -------
 

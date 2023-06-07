@@ -49,4 +49,4 @@ Install
 
 You need library `libgwenhywfar.so` installed on your machine.
 
-On Debian, you can install it via `apt install -y libgwenhywfar79` or `apt install -y libgwenhywfar-core-dev`.
+On Debian, you can install it via `apt install -y libgwenhywfar-core-dev`.

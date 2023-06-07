@@ -119,4 +119,4 @@ Install
 
 You need library `libaqbanking.so` installed on your machine.
 
-On Debian, you can install it via `apt install -y libaqbanking44` or `apt install -y libaqbanking-dev`.
+On Debian, you can install it via `apt install -y libaqbanking-dev`.

@@ -8,9 +8,18 @@
     <ProductVersion>6.2.10</ProductVersion>
     <Version>6.2.10.1</Version>
     <Authors>Martin Preuss; Leonhard Schick</Authors>
+    <Description>AqBanking is a library for online banking and financial applications.</Description>
     <PackageProjectUrl>https://www.aqbanking.de/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>GPL-3.0-or-later OR GPL-2.0-or-later</PackageLicenseExpression>
+    <PackageTags>finance, banking, library</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <!-- If all members are not documented, you can disable the compiler warnings -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <RepositoryUrl>https://github.com/leo-schick/AqBankingNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -21,6 +30,7 @@
 
   <ItemGroup>
     <None Include="docs\README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>

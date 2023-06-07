@@ -8,15 +8,25 @@
     <ProductVersion>5.6.0</ProductVersion>
     <Version>5.6.0.1</Version>
     <Authors>Martin Preuss; Leonhard Schick</Authors>
+    <Description>A multi-platform helper library for networking and security applications and libraries.</Description>
     <PackageProjectUrl>https://www.aqbanking.de/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
+    <PackageTags>library</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <!-- If all members are not documented, you can disable the compiler warnings -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <RepositoryUrl>https://github.com/leo-schick/AqBankingNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="docs\README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>

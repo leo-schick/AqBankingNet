@@ -47,7 +47,7 @@ public partial class Banking
     #region Sending Banking Commands
 
     /// <summary>
-    /// Ask AqBanking for a new job id which can be used with <see cref="Transaction.Id"/>.
+    /// Ask AqBanking for a new job id which can be used with <see cref="Transaction"/>.Id.
     ///
     /// When sending jobs via <see cref="SendCommands"/> AqBanking assigns a unique job id for every
     /// job in the list. However, applications can assign such an id beforehand to work with it.

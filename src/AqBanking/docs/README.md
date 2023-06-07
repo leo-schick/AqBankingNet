@@ -4,7 +4,7 @@ AqBanking
 AqBanking is a library for online banking and financial
 applications. 
 
-The NuGet package is a wrapper using the linux _aqbanking_ library. For install instructions below.
+The NuGet package is a wrapper using the linux library _[aqbanking](https://www.aquamaniac.de/rdm/)_. For install instructions see below.
 
 Not all functions of the official library are be implemented into the .NET library wrapper. When there
 something you miss, feel free to send in a Pull Request on [GitHub](https://github.com/leo-schick/AqBankingNet).

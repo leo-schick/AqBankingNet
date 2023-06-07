@@ -4,7 +4,7 @@ Gwenhywfar
 This is **Gwenhywfar**, a multi-platform helper library for networking and
 security applications and libraries.
 
-The NuGet package is a wrapper using the linux _gwenhywfar_ library. For install instructions below.
+The NuGet package is a wrapper using the linux library [_gwenhywfar_](https://github.com/aqbanking/aqbanking). For install instructions see below.
 
 Not all functions of the official library are be implemented into the .NET library wrapper. When there
 something you miss, feel free to send in a Pull Request on [GitHub](https://github.com/leo-schick/AqBankingNet). 

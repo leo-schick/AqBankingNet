@@ -37,8 +37,6 @@ jobs:
     - name: Install library gwenhywfar and aqbanking
       run: sudo apt install -y libgwenhywfar-core-dev libaqbanking-dev
 
-    - run: dotnet build --configuration Release
-
     # Create the NuGet package in the folder from the environment variable NuGetDirectory
     - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
 

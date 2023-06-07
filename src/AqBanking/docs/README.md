@@ -11,8 +11,7 @@ something you miss, feel free to send in a Pull Request on [GitHub](https://gith
 
 The homepage of AqBanking is https://www.aqbanking.de/
 
-1. AqBanking
-------------
+## 1. AqBanking
 
 AqBanking has three major goals which are described in the following paragraphs.
 
@@ -55,8 +54,7 @@ bank code/ account id pair validity.
 Currently AqBanking provides informations about:
 - ca 20,000 German banks
 
-2. Supported Platforms
-----------------------
+## 2. Supported Platforms
 
 AqBanking uses the library Gwenhywfar (https://www.aqbanking.de/) for
 abstraction of the underlying system. So it should work on any system for
@@ -69,8 +67,7 @@ This includes (but is not limited to):
 - most POSIX systems (such as the BSDs) should also be supported,
   however, this is untested
 
-3. Supported Backends
----------------------
+## 3. Supported Backends
 
 AqBanking includes all its currently known banking backends.
 

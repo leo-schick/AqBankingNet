@@ -13,6 +13,7 @@ public class GwenDate
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Date_fromGregorian(int y, int m, int d);
 
@@ -33,6 +34,7 @@ public class GwenDate
 
     [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_Date_GetDay(IntPtr gd);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 

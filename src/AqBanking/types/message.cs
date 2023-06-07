@@ -12,14 +12,17 @@ public enum MessageSource
 }
 
 public class Message
-{
+{    
     #region DLL Imports
 
-    [DllImport("libaqbanking.so")]
-    private static extern MessageSource AB_Message_Source_fromString([MarshalAs(UnmanagedType.LPStr)] string? p_s);
+    // ReSharper disable InconsistentNaming
+    // Not used, see Enum.Parse<MessageSource>(p_str) 
+    //[DllImport("libaqbanking.so")]
+    //private static extern MessageSource AB_Message_Source_fromString([MarshalAs(UnmanagedType.LPStr)] string? p_s);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
-    private static extern string? AB_Message_Source_toString(MessageSource p_i);
+    // Not used, see ((MessageSource)p_i).ToString()
+    //[DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    //private static extern string? AB_Message_Source_toString(MessageSource p_i);
 
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Message_new();
@@ -50,6 +53,7 @@ public class Message
     private static extern void AB_Message_SetText(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
     [DllImport("libaqbanking.so")]
     private static extern void AB_Message_SetDateReceived(IntPtr p_struct, IntPtr p_src);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 

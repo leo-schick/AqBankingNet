@@ -6,6 +6,7 @@ public class TransactionLimits
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_TransactionLimits_new();
 
@@ -263,6 +264,7 @@ public class TransactionLimits
 
     [DllImport("libaqbanking.so")]
     private static extern void AB_TransactionLimits_SetAllowChangeExecutionDay(IntPtr p_struct, int p_src);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
@@ -285,7 +287,7 @@ public class TransactionLimits
 
     public TransactionCommand Command
     {
-        get => (TransactionCommand)AB_TransactionLimits_GetCommand(this._transactionLimits);
+        get => AB_TransactionLimits_GetCommand(this._transactionLimits);
         set => AB_TransactionLimits_SetCommand(this._transactionLimits, (int)value);
     }
 
@@ -515,6 +517,12 @@ public class TransactionLimits
     {
         get => AB_TransactionLimits_GetAllowChangePurpose(this._transactionLimits) != 0;
         set => AB_TransactionLimits_SetAllowChangePurpose(this._transactionLimits, value ? 1 : 0);
+    }
+
+    public bool AllowChangeFistExecutionDate
+    {
+        get => AB_TransactionLimits_GetAllowChangeFirstExecutionDate(this._transactionLimits) != 0;
+        set => AB_TransactionLimits_SetAllowChangeFirstExecutionDate(this._transactionLimits, value ? 1 : 0);
     }
 
     public bool AllowChangeLastExecutionDate

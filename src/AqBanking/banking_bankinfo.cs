@@ -13,7 +13,7 @@ public enum BankInfoCheckResult
 
 public partial class Banking
 {
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Banking_CheckIban", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     private static extern int AB_Banking_CheckIban([In, MarshalAs(UnmanagedType.LPStr)] string iban);
 
     public static int CheckIban(string iban)
@@ -21,7 +21,7 @@ public partial class Banking
         return AB_Banking_CheckIban(iban);
     }
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Banking_MakeGermanIban", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     private static extern int AB_Banking_MakeGermanIban([In, MarshalAs(UnmanagedType.LPStr)] string bankCode, [In, MarshalAs(UnmanagedType.LPStr)] string accountNumber, IntPtr ibanBuf);
 
     public static string? MakeGermanIban(string bankCode, string accountNumber)

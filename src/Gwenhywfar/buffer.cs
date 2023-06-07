@@ -4,6 +4,9 @@ namespace Gwenhywfar;
 
 public class GwenBuffer
 {
+    #region DLL Imports
+    
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Buffer_new(int buffer, UInt32 size, UInt32 used, int take_ownership);
 
@@ -13,8 +16,11 @@ public class GwenBuffer
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_Buffer_GetStart([In] IntPtr bf);
+    // ReSharper restore InconsistentNaming
+    
+    #endregion
 
-    private IntPtr _buffer;
+    private readonly IntPtr _buffer;
 
     public GwenBuffer(int buffer, UInt32 size, UInt32 used, bool takeOwnership)
     {

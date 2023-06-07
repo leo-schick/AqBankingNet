@@ -7,6 +7,7 @@ public class ImExporterContext
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_ImExporterContext_new();
 
@@ -50,10 +51,11 @@ public class ImExporterContext
     
     [DllImport("libaqbanking.so")]
     private static extern void AB_ImExporterContext_AddTransaction(IntPtr st, IntPtr t);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
-    internal readonly IntPtr _context;
+    private readonly IntPtr _context;
 
     public ImExporterContext()
     {
@@ -121,12 +123,15 @@ public class ImExporterContext
         int returnValue = AB_ImExporterContext_toDb(this._context, (IntPtr)node);
         ErrorHandling.CheckForErrors(returnValue);
     }
+    
+    public static explicit operator IntPtr(ImExporterContext context) => context._context;
 }
 
 internal static class ImExporterList
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     public static extern IntPtr AB_ImExporterAccountInfo_List_new();
     
@@ -144,7 +149,8 @@ internal static class ImExporterList
 
     [DllImport("libaqbanking.so")]
     public static extern int AB_ImExporterAccountInfo_List_Clear(IntPtr p_struct);
-    
+    // ReSharper restore InconsistentNaming
+
     #endregion
 }
 

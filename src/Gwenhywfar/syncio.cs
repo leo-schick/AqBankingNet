@@ -25,6 +25,7 @@ public class SyncIO : IDisposable
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_SyncIo_new([In, MarshalAs(UnmanagedType.LPStr)] string? typeName, IntPtr baseIo);
 
@@ -63,6 +64,7 @@ public class SyncIO : IDisposable
     
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_SyncIo_GetBaseIo(IntPtr sio);
+    // ReSharper restore InconsistentNaming
     
     #endregion
     
@@ -82,6 +84,8 @@ public class SyncIO : IDisposable
     ~SyncIO()
     {
         ReleaseUnmanagedResources();
+
+        GWEN_SyncIo_free(this._syncIO);
     }
 
     public void Connect()

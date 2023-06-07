@@ -6,6 +6,7 @@ public static class GWEN
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so")]
     private static extern int GWEN_Init();
 
@@ -17,6 +18,7 @@ public static class GWEN
 
     [DllImport("libgwenhywfar.so")]
     private static extern void GWEN_Version(ref int major, ref int minor, ref int patchlevel, ref int build);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 

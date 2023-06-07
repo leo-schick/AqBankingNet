@@ -7,6 +7,7 @@ internal static class GwenList
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     /// <summary>
     /// Returns the size of this list, i.e. the number of elements in this
     /// list.
@@ -28,6 +29,7 @@ internal static class GwenList
     /// </summary>
     [DllImport("libgwenhywfar.so")]
     public static extern void GWEN_List_Last(IntPtr li);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 }
@@ -36,6 +38,7 @@ internal static class GwenListEnumerator
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so")]
     public static extern IntPtr GWEN_ListIterator_new(IntPtr l);
 
@@ -47,6 +50,7 @@ internal static class GwenListEnumerator
 
     [DllImport("libgwenhywfar.so")]
     public static extern IntPtr GWEN_ListIterator_DataRefPtr(IntPtr li);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 }

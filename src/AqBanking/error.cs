@@ -16,6 +16,7 @@ public class AqBankingException : Exception
         ErrorCode = errorCode;
     }
 
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public int ErrorCode { get; }
 }
 

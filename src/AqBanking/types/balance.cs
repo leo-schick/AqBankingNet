@@ -21,6 +21,7 @@ public class Balance
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Balance_new();
 
@@ -44,6 +45,19 @@ public class Balance
 
     [DllImport("libaqbanking.so")]
     private static extern void AB_Balance_SetType(IntPtr p_struct, BalanceType p_src);
+
+    [DllImport("libaqbanking.so")]
+    private static extern void AB_Balance_ReadDb(IntPtr p_struct, IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern int AB_Balance_WriteDb(IntPtr p_struct, IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_Balance_fromDb(IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern int AB_Balance_toDb(IntPtr p_struct, IntPtr p_db);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
@@ -73,13 +87,35 @@ public class Balance
     public Value Value
     {
         get => new(AB_Balance_GetValue(this._balance));
-        set => AB_Balance_SetValue(this._balance, value._value);
+        set => AB_Balance_SetValue(this._balance, (IntPtr)value);
     }
 
     public BalanceType Type
     {
         get => AB_Balance_GetType(this._balance);
         set => AB_Balance_SetType(this._balance, value);
+    }
+
+    public void ReadDb(GwenDbNode db)
+    {
+        AB_Balance_ReadDb(_balance, (IntPtr)db);
+    }
+
+    public void WriteDb(GwenDbNode db)
+    {
+        int returnValue = AB_Balance_WriteDb(_balance, (IntPtr)db);
+        ErrorHandling.CheckForErrors(returnValue);
+    }
+
+    public void ToDb(GwenDbNode db)
+    {
+        int returnValue = AB_Balance_toDb(_balance, (IntPtr)db);
+        ErrorHandling.CheckForErrors(returnValue);
+    }
+    
+    public static Balance FromDb(GwenDbNode db)
+    {
+        return new Balance(AB_Balance_fromDb((IntPtr)db));
     }
     
     public static explicit operator IntPtr(Balance balance) => balance._balance;
@@ -89,12 +125,14 @@ public class BalanceList
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Balance_List_GetByType(IntPtr p_list, BalanceType p_cmp);
+    // ReSharper restore InconsistentNaming
 
     #endregion
     
-    internal readonly IntPtr _balanceList;
+    private readonly IntPtr _balanceList;
 
     public BalanceList(IntPtr balanceList)
     {
@@ -134,12 +172,15 @@ public class BalanceList
     }
 
     // TODO: further implementation missing here
+    
+    public static explicit operator IntPtr(BalanceList list) => list._balanceList;
 }
 
 internal class BalanceListEnumerator : IEnumerator<Balance>
 {
     #region DLL Imports
     
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Balance_List_FindFirstByType(IntPtr bl, BalanceType ty);
 
@@ -148,6 +189,7 @@ internal class BalanceListEnumerator : IEnumerator<Balance>
 
     //[DllImport("libaqbanking.so")]
     //private static extern IntPtr AB_Balance_List_GetLatestByType(IntPtr bl, BalanceType ty);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
@@ -163,7 +205,7 @@ internal class BalanceListEnumerator : IEnumerator<Balance>
 
     public bool MoveNext()
     {
-        IntPtr newAccount = default;
+        IntPtr newAccount;
         if (_current == null)
         {
             newAccount = AB_Balance_List_FindFirstByType(this._balanceList, this._balanceType);

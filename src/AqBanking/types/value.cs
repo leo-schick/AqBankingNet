@@ -7,79 +7,79 @@ public class Value : IEquatable<Value>, IComparable<Value>
 {
     #region DLL Import
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_new")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Value_new();
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_free")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Value_free(IntPtr v);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_fromString", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Value_fromString([In, MarshalAs(UnmanagedType.LPStr)] string s);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_toString")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Value_toString(IntPtr v, IntPtr buf);
 
     // TBD:
     // AB_Value_toHumanReadableString
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_fromDouble")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Value_fromDouble(double i);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_fromInt")]
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Value_fromInt(long num, long denom);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_GetValueAsDouble")]
+    [DllImport("libaqbanking.so")]
     private static extern double AB_Value_GetValueAsDouble(IntPtr v);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_SetValueFromDouble")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Value_SetValueFromDouble(IntPtr v, double i);
 
     // TBD:
     //private static extern int AB_Value_GetNumDenomString(IntPtr v, ...);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_SetZero")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Value_SetZero(IntPtr v);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_IsZero")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_IsZero(IntPtr v);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_IsNegative")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_IsNegative(IntPtr v);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_IsPositive")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_IsPositive(IntPtr v);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_Compare")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_Compare(IntPtr v1, IntPtr v2);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_Equal")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_Equal(IntPtr v1, IntPtr v2);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_AddValue")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_AddValue(IntPtr v1, IntPtr v2);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_SubValue")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_SubValue(IntPtr v1, IntPtr v2);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_MultValue")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_MultValue(IntPtr v1, IntPtr v2);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_DivValue")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_DivValue(IntPtr v1, IntPtr v2);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_Negate")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Value_Negate(IntPtr v);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_GetCurrency", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Value_GetCurrency(IntPtr v);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_SetCurrency", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     private static extern void AB_Value_SetCurrency(IntPtr v, [In, MarshalAs(UnmanagedType.LPStr)] string? s);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_Num")]
+    [DllImport("libaqbanking.so")]
     private static extern long AB_Value_Num(IntPtr v);
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Value_Denom")]
+    [DllImport("libaqbanking.so")]
     private static extern long AB_Value_Denom(IntPtr v);
 
     // NOTE: implementatino for AB_Value_toHbciString is skipped.
 
     #endregion
 
-    internal readonly IntPtr _value;
+    private readonly IntPtr _value;
 
     public Value()
     {
@@ -225,11 +225,13 @@ public class Value : IEquatable<Value>, IComparable<Value>
             return false;
         }
 
-        return AB_Value_Equal(this._value, other._value) != 0;
+        return AB_Value_Equal(_value, other._value) != 0;
     }
 
     public int CompareTo(Value? other)
     {
-        return AB_Value_Compare(this._value, other != null ? _value : (IntPtr)default);
+        return AB_Value_Compare(_value, other?._value ?? default);
     }
+    
+    public static explicit operator IntPtr(Value value) => value._value;
 }

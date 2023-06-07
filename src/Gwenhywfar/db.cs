@@ -1,5 +1,4 @@
 using System.Collections;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Gwenhywfar;
@@ -50,7 +49,7 @@ public enum GwenDbFlags : uint
     /// indents text according to the current path depth when writing to a
     /// stream to improve the readability of the created file
     /// </summary>
-    INDEND                 = 0x00400000,
+    Indend                 = 0x00400000,
     /// <summary>
     /// writes a newline to the stream after writing a group to improve
     /// the readability of the created file
@@ -73,7 +72,7 @@ public enum GwenDbFlags : uint
     /// <summary>
     /// appends data to an existing file instead of overwriting it
     /// </summary>
-    APPEND_FILE            = 0x08000000,
+    AppendFile            = 0x08000000,
     /// <summary>
     /// Char values are escaped when writing them to a file.
     /// </summary>
@@ -87,13 +86,13 @@ public enum GwenDbFlags : uint
     /// locks a file before reading from or writing to it
     /// This is used by @ref GWEN_DB_ReadFile and @ref GWEN_DB_WriteFile
     /// </summary>
-    LOCKFILE               = 0x20000000,
+    LockFile               = 0x20000000,
 
     /// <summary>
     /// When setting a value or getting a group insert newly created
     /// values/groups rather than appending them
     /// </summary>
-    INSERT                 = 0x40000000,
+    Insert                 = 0x40000000,
 
     /// <summary>
     /// When writing a DB use DOS line termination (e.g. CR/LF) instead if unix mode (LF only)
@@ -103,7 +102,7 @@ public enum GwenDbFlags : uint
     /// <summary>
     /// These are the default flags which you use in most cases
     /// </summary>
-    Default  = QUOTE_VALUES | WRITE_SUBGROUPS | DETAILED_GROUPS | INDEND | ADD_GROUP_NEWLINES | ESCAPE_CHARVALUES | UNESCAPE_CHARVALUES,
+    Default  = QUOTE_VALUES | WRITE_SUBGROUPS | DETAILED_GROUPS | Indend | ADD_GROUP_NEWLINES | ESCAPE_CHARVALUES | UNESCAPE_CHARVALUES,
     
     /// <summary>
     /// same like <see cref="Default"/> except that the produced file
@@ -160,6 +159,8 @@ public class GwenDbNode
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
+
     // Iterating Through Groups
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_DB_GetFirstGroup(IntPtr n);
@@ -188,8 +189,11 @@ public class GwenDbNode
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_ReadFile(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? fname, uint dbflags);
 
+    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    private static extern int GWEN_DB_ReadFromString(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string str, int len,
+        uint dbflags);
+    
     // Not implemented:
-    //  - GWEN_DB_ReadFromString
     //  - GWEN_DB_WriteToFastBuffer
 
     [DllImport("libgwenhywfar.so")]
@@ -212,17 +216,19 @@ public class GwenDbNode
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_IsGroup(IntPtr n);
     
+    // ReSharper restore InconsistentNaming
+    
     #endregion
     
     protected GwenDbNode(IntPtr dbNode)
     {
-        this._dbNode = dbNode;
+        DbNodePtr = dbNode;
     }
 
-    protected readonly IntPtr _dbNode;
+    protected readonly IntPtr DbNodePtr;
     
-    public static explicit operator IntPtr(GwenDbNode n) => n._dbNode;
-    public static explicit operator GwenDbNode(IntPtr p) => new GwenDbNode(p);
+    public static explicit operator IntPtr(GwenDbNode n) => n.DbNodePtr;
+    public static explicit operator GwenDbNode(IntPtr p) => new(p);
 
     #region Iterating Through Groups
 
@@ -235,7 +241,7 @@ public class GwenDbNode
     /// </summary>
     public GwenDbGroup? GetFirstGroup()
     {
-        IntPtr node = GWEN_DB_GetFirstGroup(this._dbNode);
+        IntPtr node = GWEN_DB_GetFirstGroup(this.DbNodePtr);
         return node == default ? null : (GwenDbGroup)node;
     }
 
@@ -263,7 +269,7 @@ public class GwenDbNode
     /// </summary>
     public GwenDbGroup? GetNextGroup()
     {
-        IntPtr node = GWEN_DB_GetNextGroup(this._dbNode);
+        IntPtr node = GWEN_DB_GetNextGroup(this.DbNodePtr);
         return node == default ? null : (GwenDbGroup)node;
     }
 
@@ -278,7 +284,7 @@ public class GwenDbNode
     /// <param name="name">name to look for (joker and wildcards allowed)</param>
     public GwenDbGroup? FindFirstGroup(string name)
     {
-        IntPtr node = GWEN_DB_FindFirstGroup(this._dbNode, name);
+        IntPtr node = GWEN_DB_FindFirstGroup(this.DbNodePtr, name);
         return node == default ? null : (GwenDbGroup)node;
     }
 
@@ -302,7 +308,7 @@ public class GwenDbNode
     /// <param name="name">name to look for (joker and wildcards allowed)</param>
     public GwenDbGroup? FindNextGroup(string name)
     {
-        IntPtr node = GWEN_DB_FindNextGroup(this._dbNode, name);
+        IntPtr node = GWEN_DB_FindNextGroup(this.DbNodePtr, name);
         return node == default ? null : (GwenDbGroup)node;
     }
 
@@ -338,7 +344,23 @@ public class GwenDbNode
     /// <param name="defVal">defVal default value to return in case there is no real value</param>
     public string? GetCharValue(string path, int idx = 0, string? defVal = null)
     {
-        return GWEN_DB_GetCharValue(this._dbNode, path, idx, defVal);
+        return GWEN_DB_GetCharValue(this.DbNodePtr, path, idx, defVal);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="path">path and name of the variable</param>
+    /// <param name="value">The string value that is copied into the DB</param>
+    /// <param name="flags">
+    /// flags see <see cref="GwenDbFlags.OVERWRITE_VARS"/> and others which
+    /// can all be OR-combined to form the flags to use.
+    /// </param>
+    public void SetCharValue(string path, string value, GwenDbFlags flags)
+    {
+        int returnValue = GWEN_DB_SetCharValue(DbNodePtr, (uint)flags, path, value);
+        if (returnValue != 0)
+            throw new Exception($"Error set char value to {path}: {returnValue}");
     }
 
     #endregion
@@ -351,7 +373,7 @@ public class GwenDbNode
     }
     public void ReadFromIo(SyncIO syncIo, uint dbFlags)
     {
-        int returnValue = GWEN_DB_ReadFromIo(this._dbNode, (IntPtr)syncIo, dbFlags);
+        int returnValue = GWEN_DB_ReadFromIo(this.DbNodePtr, (IntPtr)syncIo, dbFlags);
         if (returnValue != 0)
             throw new IOException($"Error reading from IO: {returnValue}");
     }
@@ -362,9 +384,24 @@ public class GwenDbNode
     }
     public void ReadFile(string fileName, uint dbFlags)
     {
-        int returnValue = GWEN_DB_ReadFile(this._dbNode, fileName, dbFlags);
+        int returnValue = GWEN_DB_ReadFile(this.DbNodePtr, fileName, dbFlags);
         if (returnValue != 0)
             throw new IOException($"Error reading from file: {returnValue}");
+    }
+
+    public void ReadFromString(string str, GwenDbFlags dbFlags = GwenDbFlags.Default)
+    {
+        ReadFromString(str, (uint)dbFlags);
+    }
+    
+    public void ReadFromString(string str, uint dbFlags)
+    {
+        if (str == null)
+            throw new ArgumentNullException(nameof(str));
+
+        int returnValue = GWEN_DB_ReadFromString(this.DbNodePtr, str, str.Length, dbFlags);
+        if (returnValue != 0)
+            throw new IOException($"Error reading from string: {returnValue}");
     }
     
     public void WriteToIo(SyncIO syncIo, GwenDbFlags dbFlags)
@@ -373,7 +410,7 @@ public class GwenDbNode
     }
     public void WriteToIo(SyncIO syncIo, uint dbFlags)
     {
-        int returnValue = GWEN_DB_WriteToIo(this._dbNode, (IntPtr)syncIo, dbFlags);
+        int returnValue = GWEN_DB_WriteToIo(this.DbNodePtr, (IntPtr)syncIo, dbFlags);
         if (returnValue != 0)
             throw new IOException($"Error writing to IO: {returnValue}");
     }
@@ -384,14 +421,14 @@ public class GwenDbNode
     }
     public void WriteFile(string fileName, uint dbFlags)
     {
-        int returnValue = GWEN_DB_WriteFile(this._dbNode, fileName, dbFlags);
+        int returnValue = GWEN_DB_WriteFile(this.DbNodePtr, fileName, dbFlags);
         if (returnValue != 0)
             throw new IOException($"Error writing to file: {returnValue}");
     }
 
     public void WriteToBuffer(GwenBuffer buffer, uint dbFlags)
     {
-        int returnValue = GWEN_DB_WriteToBuffer(this._dbNode, (IntPtr)buffer, dbFlags);
+        int returnValue = GWEN_DB_WriteToBuffer(this.DbNodePtr, (IntPtr)buffer, dbFlags);
         if (returnValue != 0)
             throw new IOException($"Error writing to buffer: {returnValue}");
     }
@@ -405,8 +442,8 @@ public class GwenDbNode
     /// </summary>
     public string? GroupName
     {
-        get => GWEN_DB_GroupName(this._dbNode);
-        set => GWEN_DB_GroupRename(this._dbNode, value);
+        get => GWEN_DB_GroupName(this.DbNodePtr);
+        set => GWEN_DB_GroupRename(this.DbNodePtr, value);
     }
     
     /// <summary>
@@ -414,7 +451,7 @@ public class GwenDbNode
     /// NODE is a Group or not. Usually these group nodes are the only
     /// nodes that the application gets in touch with.
     /// </summary>
-    public bool IsGroup => GWEN_DB_IsGroup(this._dbNode) != 0;
+    public bool IsGroup => GWEN_DB_IsGroup(this.DbNodePtr) != 0;
 
     #endregion
 }
@@ -423,11 +460,13 @@ public class GwenDbGroup : GwenDbNode
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_DB_Group_new([In, MarshalAs(UnmanagedType.LPStr)] string name);
 
     [DllImport("libgwenhywfar.so")]
     private static extern void GWEN_DB_Group_free(IntPtr n);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
@@ -441,7 +480,7 @@ public class GwenDbGroup : GwenDbNode
     {
     }
     
-    public static explicit operator IntPtr(GwenDbGroup n) => n._dbNode;
+    public static explicit operator IntPtr(GwenDbGroup n) => n.DbNodePtr;
     public static explicit operator GwenDbGroup(IntPtr p) => new(p);
 
     public static GwenDbNode FromDbNode(GwenDbNode dbNode)
@@ -454,7 +493,7 @@ public class GwenDbGroup : GwenDbNode
 
     ~GwenDbGroup()
     {
-        GWEN_DB_Group_free(this._dbNode);
+        GWEN_DB_Group_free(this.DbNodePtr);
     }
 }
 

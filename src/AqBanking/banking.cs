@@ -7,6 +7,8 @@ public partial class Banking : IDisposable
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
+
     // Constructor, Destructor, Init, Fini
 
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
@@ -60,6 +62,8 @@ public partial class Banking : IDisposable
     
     [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     private static extern int AB_Banking_RuntimeConfig_GetIntValue(IntPtr ab, [MarshalAs(UnmanagedType.LPStr)] string? varName, int defaultValue);
+
+    // ReSharper restore InconsistentNaming
 
     #endregion
 

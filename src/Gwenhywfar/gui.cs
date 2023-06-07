@@ -35,6 +35,7 @@ public enum GwenGUIPasswordMethod : uint
     ///   <li>char methodDescription: Description of the method (optional)</li>
     /// </ul>
     /// </summary>
+    // ReSharper disable once InconsistentNaming
     OpticalHHD = 0x20000,
 }
 
@@ -42,6 +43,7 @@ public class GwenGUI
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Gui_new();
 
@@ -59,6 +61,8 @@ public class GwenGUI
     
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Gui_GetPasswordDb(IntPtr gui);
+
+    // ReSharper restore InconsistentNaming
 
     #endregion
 

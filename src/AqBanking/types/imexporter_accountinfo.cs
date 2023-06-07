@@ -6,7 +6,8 @@ namespace AqBanking;
 public class ImExporterAccountInfo
 {
     #region DLL Imports
-    
+
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_ImExporterAccountInfo_new();
 
@@ -119,6 +120,18 @@ public class ImExporterAccountInfo
 
     [DllImport("libaqbanking.so")]
     private static extern void AB_ImExporterAccountInfo_SetEStatementList(IntPtr p_struct, IntPtr p_src);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern void AB_ImExporterAccountInfo_ReadDb(IntPtr p_struct, IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern int AB_ImExporterAccountInfo_WriteDb(IntPtr p_struct, IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_ImExporterAccountInfo_fromDb(IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern int AB_ImExporterAccountInfo_toDb(IntPtr p_struct, IntPtr p_db);
 
     [DllImport("libaqbanking.so")]
     private static extern void AB_ImExporterAccountInfo_Clear(IntPtr p_struct);
@@ -136,7 +149,9 @@ public class ImExporterAccountInfo
     private static extern void AB_ImExporterAccountInfo_AddEStatement(IntPtr p_struct, IntPtr d);
 
     // TODO: there are multiple functions which could be added here ...
-    
+
+    // ReSharper restore InconsistentNaming
+
     #endregion
 
     private readonly IntPtr _imExporterAccountInfo;
@@ -237,7 +252,7 @@ public class ImExporterAccountInfo
     public BalanceList BalanceList
     {
         get => new BalanceList(AB_ImExporterAccountInfo_GetBalanceList(this._imExporterAccountInfo));
-        set => AB_ImExporterAccountInfo_SetBalanceList(this._imExporterAccountInfo, value._balanceList);
+        set => AB_ImExporterAccountInfo_SetBalanceList(this._imExporterAccountInfo, (IntPtr)value);
     }
 
     public TransactionList TransactionList
@@ -249,7 +264,7 @@ public class ImExporterAccountInfo
     public DocumentList EStatementList
     {
         get => new DocumentList(AB_ImExporterAccountInfo_GetEStatementList(this._imExporterAccountInfo));
-        set => AB_ImExporterAccountInfo_SetEStatementList(this._imExporterAccountInfo, value._documentList);
+        set => AB_ImExporterAccountInfo_SetEStatementList(this._imExporterAccountInfo, (IntPtr)value);
     }
 
     public void AddTransaction(Transaction transaction)
@@ -278,6 +293,28 @@ public class ImExporterAccountInfo
     public void FillFromTransaction(Transaction transaction)
     {
         AB_ImExporterAccountInfo_FillFromTransaction(this._imExporterAccountInfo, (IntPtr)transaction);
+    }
+    
+    public void ReadDb(GwenDbNode db)
+    {
+        AB_ImExporterAccountInfo_ReadDb(_imExporterAccountInfo, (IntPtr)db);
+    }
+
+    public void WriteDb(GwenDbNode db)
+    {
+        int returnValue = AB_ImExporterAccountInfo_WriteDb(_imExporterAccountInfo, (IntPtr)db);
+        ErrorHandling.CheckForErrors(returnValue);
+    }
+
+    public void ToDb(GwenDbNode db)
+    {
+        int returnValue = AB_ImExporterAccountInfo_toDb(_imExporterAccountInfo, (IntPtr)db);
+        ErrorHandling.CheckForErrors(returnValue);
+    }
+    
+    public static ImExporterAccountInfo FromDb(GwenDbNode db)
+    {
+        return new ImExporterAccountInfo(AB_ImExporterAccountInfo_fromDb((IntPtr)db));
     }
     
     public static explicit operator IntPtr(ImExporterAccountInfo accountInfo) => accountInfo._imExporterAccountInfo;

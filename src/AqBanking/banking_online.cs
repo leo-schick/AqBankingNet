@@ -6,17 +6,19 @@ public partial class Banking
 {
     #region DLL Imports
     
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Banking_GetAccountSpecList")]
+    // ReSharper disable InconsistentNaming
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Banking_GetAccountSpecList(IntPtr ab, ref IntPtr pAccountSpecList);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Banking_GetAccountSpecByUniqueId")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Banking_GetAccountSpecByUniqueId(IntPtr ab, UInt32 uniqueAccountId, ref IntPtr pAccountSpec);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Banking_ReserveJobId")]
+    [DllImport("libaqbanking.so")]
     private static extern UInt32 AB_Banking_ReserveJobId(IntPtr ab);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Banking_SendCommands")]
+    [DllImport("libaqbanking.so")]
     private static extern int AB_Banking_SendCommands(IntPtr ab, IntPtr commandList, IntPtr ctx);
+    // ReSharper restore InconsistentNaming
 
     #endregion
     
@@ -35,7 +37,7 @@ public partial class Banking
     public Account? GetAccountSpecByUniqueId(UInt32 uniqueAccountId)
     {
         IntPtr pAccountSpec = default;
-        int returnValue = AB_Banking_GetAccountSpecList(this._banking, ref pAccountSpec);
+        int returnValue = AB_Banking_GetAccountSpecByUniqueId(_banking, uniqueAccountId, ref pAccountSpec);
         ErrorHandling.CheckForErrors(returnValue);
         if (pAccountSpec == default)
             return null;
@@ -66,7 +68,7 @@ public partial class Banking
     /// 
     public void SendCommands(TransactionList commandList, ImExporterContext context)
     {
-        int returnValue = AB_Banking_SendCommands(this._banking, (IntPtr)commandList, context._context);
+        int returnValue = AB_Banking_SendCommands(this._banking, (IntPtr)commandList, (IntPtr)context);
         ErrorHandling.CheckForErrors(returnValue, "Error on executeQueue ({0})");
     }
     

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Gwenhywfar;
 
 namespace AqBanking;
 
@@ -6,31 +7,31 @@ public class Document
 {
     #region DLL Imports
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_new")]
+    // ReSharper disable InconsistentNaming
+    [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Document_new();
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_free")]
+    [DllImport("libaqbanking.so")]
     private static extern void AB_Document_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_GetId", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     public static extern string? AB_Document_GetId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_GetOwnerId")]
-    [return: MarshalAs(UnmanagedType.LPStr)]
+    [DllImport("libaqbanking.so")]
     public static extern UInt32 AB_Document_GetOwnerId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_GetId", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     public static extern string? AB_Document_GetMimeType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetId", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     public static extern void AB_Document_SetId(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetOwnerId")]
+    [DllImport("libaqbanking.so")]
     public static extern void AB_Document_SetOwnerId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so", EntryPoint = "AB_Document_SetMimeType", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
     public static extern void AB_Document_SetMimeType(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
     [DllImport("libaqbanking.so")]
@@ -48,10 +49,28 @@ public class Document
     [DllImport("libaqbanking.so")]
     public static extern UInt32 AB_Document_GetAcknowledgeCodeLen(IntPtr st);
 
+    [DllImport("libaqbanking.so")]
+    private static extern void AB_Document_ReadDb(IntPtr p_struct, IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern int AB_Document_WriteDb(IntPtr p_struct, IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern IntPtr AB_Document_fromDb(IntPtr p_db);
+    
+    [DllImport("libaqbanking.so")]
+    private static extern int AB_Document_toDb(IntPtr p_struct, IntPtr p_db);
+    // ReSharper restore InconsistentNaming
+
     #endregion
 
     private readonly IntPtr _document;
 
+    private Document(IntPtr document)
+    {
+        this._document = document;
+    }
+    
     public Document()
     {
         this._document = AB_Document_new();
@@ -95,17 +114,41 @@ public class Document
         }
     }
     
+    public void ReadDb(GwenDbNode db)
+    {
+        AB_Document_ReadDb(_document, (IntPtr)db);
+    }
+
+    public void WriteDb(GwenDbNode db)
+    {
+        int returnValue = AB_Document_WriteDb(_document, (IntPtr)db);
+        ErrorHandling.CheckForErrors(returnValue);
+    }
+
+    public void ToDb(GwenDbNode db)
+    {
+        int returnValue = AB_Document_toDb(_document, (IntPtr)db);
+        ErrorHandling.CheckForErrors(returnValue);
+    }
+    
+    public static Document FromDb(GwenDbNode db)
+    {
+        return new Document(AB_Document_fromDb((IntPtr)db));
+    }
+
     public static explicit operator IntPtr(Document document) => document._document;
 }
 
 public class DocumentList
 {
-    internal readonly IntPtr _documentList;
+    private readonly IntPtr _documentList;
 
     public DocumentList(IntPtr documentList)
     {
         this._documentList = documentList;
     }
 
-    // TODO: furhter implementation missing here
+    // TODO: further implementation missing here
+
+    public static explicit operator IntPtr(DocumentList list) => list._documentList;
 }

@@ -11,10 +11,11 @@ namespace Gwenhywfar;
 /// </summary>
 public class GwenTime
 {
-    private static DateTime Epoc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+    private static readonly DateTime Epoc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libgwenhywfar.so")]
     private static extern IntPtr GWEN_Time_new(int year, int month, int day, int hour, int min, int sec, int inUtc);
 
@@ -30,26 +31,28 @@ public class GwenTime
     [DllImport("libgwenhywfar.so")]
     private static extern double GWEN_Time_Milliseconds(IntPtr t);
 
-    [DllImport("libgwenhywfar.so")]
-    private static extern int GWEN_Time_Diff(IntPtr t1, IntPtr t0);
-
-    [DllImport("libgwenhywfar.so")]
-    private static extern int GWEN_Time_DiffSeconds(IntPtr t1, IntPtr t0);
-
-    [DllImport("libgwenhywfar.so")]
-    private static extern int GWEN_Time_Compare(IntPtr t1, IntPtr t0);
-    
-    [DllImport("libgwenhywfar.so")]
-    private static extern int GWEN_Time_AddSeconds(IntPtr t1, uint secs);
-    
-    [DllImport("libgwenhywfar.so")]
-    private static extern int GWEN_Time_SubSeconds(IntPtr t1, uint secs);
+    // Not necessary:
+    //[DllImport("libgwenhywfar.so")]
+    //private static extern int GWEN_Time_Diff(IntPtr t1, IntPtr t0);
+    //
+    //[DllImport("libgwenhywfar.so")]
+    //private static extern int GWEN_Time_DiffSeconds(IntPtr t1, IntPtr t0);
+    //
+    //[DllImport("libgwenhywfar.so")]
+    //private static extern int GWEN_Time_Compare(IntPtr t1, IntPtr t0);
+    //
+    //[DllImport("libgwenhywfar.so")]
+    //private static extern int GWEN_Time_AddSeconds(IntPtr t1, uint secs);
+    //
+    //[DllImport("libgwenhywfar.so")]
+    //private static extern int GWEN_Time_SubSeconds(IntPtr t1, uint secs);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
     private readonly IntPtr _time;
 
-    internal GwenTime(IntPtr t)
+    private GwenTime(IntPtr t)
     {
         this._time = t;
     }

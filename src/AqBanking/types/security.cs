@@ -7,6 +7,7 @@ public class Security
 {
     #region DLL Imports
 
+    // ReSharper disable InconsistentNaming
     [DllImport("libaqbanking.so")]
     private static extern IntPtr AB_Security_new();
     [DllImport("libaqbanking.so")]
@@ -44,6 +45,7 @@ public class Security
     private static extern void AB_Security_SetUnitPriceValue(IntPtr p_struct, IntPtr p_src);
     [DllImport("libaqbanking.so")]
     private static extern void AB_Security_SetUnitPriceDate(IntPtr p_struct, IntPtr p_src);
+    // ReSharper restore InconsistentNaming
 
     #endregion
 
@@ -87,12 +89,12 @@ public class Security
     public Value Units
     {
         get => new Value(AB_Security_GetUnits(this._security));
-        set => AB_Security_SetUnits(this._security, value._value);
+        set => AB_Security_SetUnits(this._security, (IntPtr)value);
     }
     public Value UnitPriceValue
     {
         get => new Value(AB_Security_GetUnitPriceValue(this._security));
-        set => AB_Security_SetUnitPriceValue(this._security, value._value);
+        set => AB_Security_SetUnitPriceValue(this._security, (IntPtr)value);
     }
     public GwenTime UnitPriceDate
     {

@@ -34,6 +34,9 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
 
+    - name: Install library gwenhywfar and aqbanking
+      run: sudo apt install -y libgwenhywfar-core-dev libaqbanking-dev
+
     # Create the NuGet package in the folder from the environment variable NuGetDirectory
     - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
 
@@ -59,9 +62,6 @@ jobs:
           name: nuget
           path: ${{ env.NuGetDirectory }}
 
-      - name: Install linux libraries gwenhywfar and aqbanking
-        run: sudo apt install -y libgwenhywfar-core-dev libaqbanking-dev
-
       - name: Install nuget validator
         run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
 
@@ -78,7 +78,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
-    - name: Install linux libraries gwenhywfar and aqbanking
+    - name: Install library gwenhywfar and aqbanking
       run: sudo apt install -y libgwenhywfar-core-dev libaqbanking-dev
     - name: Run tests
       run: dotnet test --configuration Release

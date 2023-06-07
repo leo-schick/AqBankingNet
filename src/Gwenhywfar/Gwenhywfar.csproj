@@ -8,15 +8,29 @@
     <ProductVersion>5.6.0</ProductVersion>
     <Version>5.6.0.1</Version>
     <Authors>Martin Preuss; Leonhard Schick</Authors>
+    <Description>A multi-platform helper library for networking and security applications and libraries.</Description>
     <PackageProjectUrl>https://www.aqbanking.de/</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>LGPL-2.1-only</PackageLicenseExpression>
+    <PackageTags>library</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- If all members are not documented, you can disable the compiler warnings -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <RepositoryUrl>https://github.com/leo-schick/AqBankingNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="docs\README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>

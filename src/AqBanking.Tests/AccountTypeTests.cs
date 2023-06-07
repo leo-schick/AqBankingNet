@@ -12,8 +12,11 @@ public class AccountTypeTests
                                               "char country=\"DE\"" + NewLine +
                                               "" + NewLine +
                                               "transactionLimitsList {" + NewLine +
-                                              "} #transactionLimitsList" + NewLine;
-    
+                                              "} #transactionLimitsList" + NewLine +
+                                              "" + NewLine +
+                                              "refAccountList {" + NewLine +
+                                              "} #refAccountList" + NewLine;
+
     [Fact]
     public void AccountToDbStringTest()
     {

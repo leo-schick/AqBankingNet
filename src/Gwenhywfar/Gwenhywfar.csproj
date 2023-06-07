@@ -19,6 +19,8 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <RepositoryUrl>https://github.com/leo-schick/AqBankingNet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Gwenhywfar.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,7 +32,7 @@
 
   <ItemGroup>
     <None Include="docs\README.md" Pack="true" PackagePath="\" />
-    <None Include="icon.png" Pack="true" PackagePath=""/>
+    <None Include="icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

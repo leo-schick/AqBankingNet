@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AqBanking", "src\AqBanking\AqBanking.csproj", "{CAC9DF61-F845-4885-96C1-420392B894C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AqBanking.TestApp", "src\AqBanking.TestApp\AqBanking.TestApp.csproj", "{A549FB15-B9BB-4785-99CC-A01478F1D264}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AqBankingTool", "src\AqBankingTool\AqBankingTool.csproj", "{A549FB15-B9BB-4785-99CC-A01478F1D264}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gwenhywfar", "src\Gwenhywfar\Gwenhywfar.csproj", "{C83C196F-FA5A-4BD1-9292-293450F04737}"
 EndProject

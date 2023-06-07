@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ProductVersion>6.2.10</ProductVersion>
-    <Version>6.2.10.1</Version>
+    <Version>6.2.10.2</Version>
     <Authors>Martin Preuss; Leonhard Schick</Authors>
     <Description>AqBanking is a library for online banking and financial applications.</Description>
     <PackageProjectUrl>https://www.aqbanking.de/</PackageProjectUrl>

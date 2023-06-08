@@ -8,138 +8,138 @@ public class Account
     #region DLL Imports
     
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_AccountSpec_new();
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_AccountSpec_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_AccountSpec_GetType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_AccountSpec_GetUniqueId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetBackendName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetOwnerName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetAccountName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetCurrency(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetMemo(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetIban(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetBic(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetCountry(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetBankCode(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetBankName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetBranchId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetAccountNumber(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_AccountSpec_GetSubAccountNumber(IntPtr p_struct);
 
-    //[DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    //[DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     //private static extern TBD AB_AccountSpec_GetTransactionLimitsList(IntPtr p_struct);
 
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_AccountSpec_SetType(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_AccountSpec_SetUniqueId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetBackendName(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetOwnerName(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetAccountName(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetCurrency(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetMemo(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetIban(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetBic(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetCountry(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetBankCode(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetBankName(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetBranchId(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetAccountNumber(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_AccountSpec_SetSubAccountNumber(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern void AB_AccountSpec_SetTransactionLimitsList(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_AccountSpec_GetTransactionLimitsForCommand(IntPtr st, TransactionCommand cmd);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_AccountSpec_AddTransactionLimits(IntPtr st, IntPtr l);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_AccountSpec_ReadDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_AccountSpec_WriteDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_AccountSpec_fromDb(IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_AccountSpec_toDb(IntPtr p_struct, IntPtr p_db);
     // ReSharper restore InconsistentNaming
 
@@ -298,7 +298,7 @@ public class AccountList : GwenList<Account>
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_AccountSpec_List_free(IntPtr accs);
     // ReSharper restore InconsistentNaming
 
@@ -325,10 +325,10 @@ internal class AccountListEnumerator : GwenListEnumerator<Account>
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_AccountSpec_List_First(IntPtr accs);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_AccountSpec_List_Next(IntPtr accs);
     // ReSharper restore InconsistentNaming
 

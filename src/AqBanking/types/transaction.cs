@@ -120,545 +120,545 @@ public class Transaction
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_new();
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern TransactionType AB_Transaction_GetType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern TransactionSubType AB_Transaction_GetSubType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern TransactionCommand AB_Transaction_GetCommand(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern TransactionStatus AB_Transaction_GetStatus(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Transaction_GetUniqueAccountId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Transaction_GetUniqueId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Transaction_GetRefUniqueId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Transaction_GetIdForApplication(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetStringIdForApplication(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern UInt32 AB_Transaction_GetSessionId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern UInt32 AB_Transaction_GetGroupId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetFiId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalIban(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalBic(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalCountry(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalBankCode(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalBranchId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalAccountNumber(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalSuffix(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetLocalName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteCountry(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteBankCode(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteBranchId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteAccountNumber(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteSuffix(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteIban(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteBic(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Transaction_GetDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Transaction_GetValutaDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Transaction_GetValue(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Transaction_GetFees(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern int AB_Transaction_GetTransactionCode(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetTransactionText(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetTransactionKey(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern int AB_Transaction_GetTextKey(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetPrimanota(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetPurpose(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetCategory(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetCustomerReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetBankReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetEndToEndReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetUltimateCreditor(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetUltimateDebtor(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetCreditorSchemeId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetOriginatorId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetMandateId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Transaction_GetMandateDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetMandateDebitorName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetOriginalCreditorSchemeId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetOriginalMandateId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetOriginalCreditorName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern TransactionSequence AB_Transaction_GetSequence(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern TransactionCharge AB_Transaction_GetCharge(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteAddrStreet(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteAddrZipcode(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteAddrCity(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetRemoteAddrPhone(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern TransactionPeriod AB_Transaction_GetPeriod(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Transaction_GetCycle(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Transaction_GetExecutionDay(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetFirstDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetLastDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetNextDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetUnitId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetUnitIdNameSpace(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetTickerSymbol(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetUnits(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetUnitPriceValue(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetUnitPriceDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_GetCommissionValue(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetMemo(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Transaction_GetHash(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetType(IntPtr p_struct, TransactionType p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetSubType(IntPtr p_struct, TransactionSubType p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetCommand(IntPtr p_struct, TransactionCommand p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetStatus(IntPtr p_struct, TransactionStatus p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetUniqueAccountId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetUniqueId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetRefUniqueId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetIdForApplication(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetStringIdForApplication(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetSessionId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetGroupId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetFiId(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalIban(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalBic(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalCountry(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalBankCode(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalBranchId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalAccountNumber(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalSuffix(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetLocalName(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteCountry(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteBankCode(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteBranchId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteAccountNumber(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteSuffix(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteIban(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteBic(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteName(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetValutaDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetValue(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetFees(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetTransactionCode(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetTransactionText(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetTransactionKey(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetTextKey(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetPrimanota(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetPurpose(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetCategory(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetCustomerReference(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetBankReference(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetEndToEndReference(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetUltimateCreditor(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetUltimateDebtor(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetCreditorSchemeId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetOriginatorId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetMandateId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetMandateDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetMandateDebitorName(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetOriginalCreditorSchemeId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetOriginalMandateId(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetOriginalCreditorName(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetSequence(IntPtr p_struct, TransactionSequence p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetCharge(IntPtr p_struct, TransactionCharge p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteAddrStreet(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteAddrZipcode(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteAddrCity(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetRemoteAddrPhone(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetPeriod(IntPtr p_struct, TransactionPeriod p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetCycle(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetExecutionDay(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetFirstDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetLastDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetNextDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void
         AB_Transaction_SetUnitId(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetUnitIdNameSpace(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetTickerSymbol(IntPtr p_struct,
         [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetUnits(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetUnitPriceValue(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetUnitPriceDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_SetCommissionValue(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetMemo(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Transaction_SetHash(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_ReadDb(IntPtr p_struct, IntPtr p_db);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Transaction_WriteDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_fromDb(IntPtr p_db);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Transaction_toDb(IntPtr p_struct, IntPtr p_db);
     // ReSharper restore InconsistentNaming
 
@@ -1149,17 +1149,17 @@ public class TransactionList : IEnumerable<Transaction>
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_List2_new();
 
     // not used in aqbanking tools code, so it might not exist  
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern void AB_Transaction_List2_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_List2_PushBack(IntPtr p_struct, IntPtr t);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern uint AB_Transaction_List2_GetSize(IntPtr p_struct);
     // ReSharper restore InconsistentNaming
     
@@ -1206,16 +1206,16 @@ internal class TransactionListEnumerator : GwenList2Enumerator<Transaction>
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_List2_First(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_List2Iterator_Data(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Transaction_List2Iterator_Next(IntPtr p_struct);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Transaction_List2Iterator_free(IntPtr p_struct);
     // ReSharper restore InconsistentNaming
 

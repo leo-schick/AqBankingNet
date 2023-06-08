@@ -8,48 +8,48 @@ public class ImExporterContext
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_ImExporterContext_new();
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_ImExporterContext_GetAccountInfoList(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_ImExporterContext_GetSecurityList(IntPtr p_struct);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_ImExporterContext_GetMessageList(IntPtr p_struct);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_SetAccountInfoList(IntPtr p_struct, IntPtr p_src);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_SetSecurityList(IntPtr p_struct, IntPtr p_src);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_SetMessageList(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_ImExporterContext_fromDb(IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_ImExporterContext_toDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_Clear(IntPtr str);
 
     // TODO multiple ImExporterContext functions not implemented here 
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_AddSecurity(IntPtr st, IntPtr sec);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_AddMessage(IntPtr st, IntPtr msg);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_ImExporterContext_AddTransaction(IntPtr st, IntPtr t);
     // ReSharper restore InconsistentNaming
 
@@ -132,22 +132,22 @@ internal static class ImExporterList
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern IntPtr AB_ImExporterAccountInfo_List_new();
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern IntPtr AB_ImExporterAccountInfo_List_First(IntPtr p_struct);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern IntPtr AB_ImExporterAccountInfo_List_Next(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern IntPtr AB_ImExporterAccountInfo_List_Add(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern int AB_ImExporterAccountInfo_List_GetCount(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern int AB_ImExporterAccountInfo_List_Clear(IntPtr p_struct);
     // ReSharper restore InconsistentNaming
 

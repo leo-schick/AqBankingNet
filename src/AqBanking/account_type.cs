@@ -23,10 +23,10 @@ public static class AccountTypeExtension
     #region DLL Imports
     
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_AccountType_toChar(AccountType ty);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern Int32 AB_AccountType_fromChar([MarshalAs(UnmanagedType.LPStr)] string s);
     // ReSharper restore InconsistentNaming
 

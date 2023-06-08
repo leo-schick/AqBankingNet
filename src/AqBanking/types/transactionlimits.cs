@@ -7,262 +7,262 @@ public class TransactionLimits
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_TransactionLimits_new();
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern TransactionCommand AB_TransactionLimits_GetCommand(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxLenLocalName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinLenLocalName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxLenRemoteName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinLenRemoteName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxLenCustomerReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinLenCustomerReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxLenBankReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinLenBankReference(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxLenPurpose(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinLenPurpose(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxLinesPurpose(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinLinesPurpose(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetNeedDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinValueSetupTime(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxValueSetupTime(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinValueSetupTimeFirst(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxValueSetupTimeFirst(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinValueSetupTimeOnce(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxValueSetupTimeOnce(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinValueSetupTimeRecurring(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxValueSetupTimeRecurring(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMinValueSetupTimeFinal(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetMaxValueSetupTimeFinal(IntPtr p_struct);
 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern uint8_t *AB_TransactionLimits_GetValuesCycleWeek(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetValuesCycleWeekUsed(IntPtr p_struct);
 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern uint8_t *AB_TransactionLimits_GetValuesCycleMonth(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetValuesCycleMonthUsed(IntPtr p_struct);
 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern uint8_t *B_TransactionLimits_GetValuesExecutionDayWeek(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetValuesExecutionDayWeekUsed(IntPtr p_struct);
 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern uint8_t *AB_TransactionLimits_GetValuesExecutionDayMonth(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetValuesExecutionDayMonthUsed(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowMonthly(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowWeekly(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeRecipientAccount(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeRecipientName(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeValue(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeTextKey(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangePurpose(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeFirstExecutionDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeLastExecutionDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeCycle(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangePeriod(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_TransactionLimits_GetAllowChangeExecutionDay(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetCommand(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxLenLocalName(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinLenLocalName(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxLenRemoteName(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinLenRemoteName(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxLenCustomerReference(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinLenCustomerReference(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxLenBankReference(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinLenBankReference(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxLenPurpose(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinLenPurpose(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxLinesPurpose(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinLinesPurpose(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetNeedDate(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinValueSetupTime(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxValueSetupTime(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinValueSetupTimeFirst(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxValueSetupTimeFirst(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinValueSetupTimeOnce(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxValueSetupTimeOnce(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinValueSetupTimeRecurring(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxValueSetupTimeRecurring(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMinValueSetupTimeFinal(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetMaxValueSetupTimeFinal(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetValuesCycleWeekUsed(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetValuesCycleMonthUsed(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetValuesExecutionDayWeekUsed(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetValuesExecutionDayMonthUsed(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowMonthly(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowWeekly(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeRecipientAccount(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeRecipientName(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeValue(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeTextKey(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangePurpose(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeFirstExecutionDate(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeLastExecutionDate(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeCycle(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangePeriod(IntPtr p_struct, int p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_TransactionLimits_SetAllowChangeExecutionDay(IntPtr p_struct, int p_src);
     // ReSharper restore InconsistentNaming
 

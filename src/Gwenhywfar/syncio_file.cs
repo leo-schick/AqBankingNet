@@ -45,23 +45,23 @@ public class SyncIOFile : SyncIO
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_SyncIo_File_new([MarshalAs(UnmanagedType.LPStr)] string path, SyncIOFileCreationMode creationMode);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_SyncIo_File_fromStdin();
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_SyncIo_File_fromStdout();
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_SyncIo_File_fromStderr();
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_SyncIo_File_GetPath(IntPtr sio);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern long GWEN_SyncIo_File_Seek(IntPtr sio, long pos, SyncIOFileWhence whence);
     // ReSharper restore InconsistentNaming
 

@@ -8,57 +8,57 @@ public class Document
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Document_new();
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Document_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     public static extern string? AB_Document_GetId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern UInt32 AB_Document_GetOwnerId(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     public static extern string? AB_Document_GetMimeType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     public static extern void AB_Document_SetId(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern void AB_Document_SetOwnerId(IntPtr p_struct, UInt32 p_src);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     public static extern void AB_Document_SetMimeType(IntPtr p_struct, [In, MarshalAs(UnmanagedType.LPStr)] string? p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern void AB_Document_SetData(IntPtr p_struct, IntPtr p, UInt32 len);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern void AB_Document_GetDataPtr(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern void AB_Document_SetAcknowledgeCode(IntPtr st, byte p, UInt32 len);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern byte AB_Document_GetAcknowledgeCodePtr(IntPtr st);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     public static extern UInt32 AB_Document_GetAcknowledgeCodeLen(IntPtr st);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Document_ReadDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Document_WriteDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Document_fromDb(IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Document_toDb(IntPtr p_struct, IntPtr p_db);
     // ReSharper restore InconsistentNaming
 

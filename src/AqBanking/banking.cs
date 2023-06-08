@@ -11,35 +11,35 @@ public partial class Banking : IDisposable
 
     // Constructor, Destructor, Init, Fini
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Banking_new([In, MarshalAs(UnmanagedType.LPStr)] string appName, [In, MarshalAs(UnmanagedType.LPStr)] string? dname, UInt32 extensions = 0);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Banking_free(IntPtr ab);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Banking_Init(IntPtr ab);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Banking_Fini(IntPtr ab);
     
     // Application Information, Shared Data
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Banking_GetVersion(ref int major, ref int minor, ref int patchlevel, ref int build);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Banking_GetAppName(IntPtr ab);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Banking_GetEscapedAppName(IntPtr ab);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Banking_GetUserDataDir(IntPtr ab, [Out] IntPtr buf);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern int AB_Banking_GetSharedDataDir(IntPtr ab, [In, MarshalAs(UnmanagedType.LPStr)] string? name, [Out] IntPtr buf);
     
     // Missing functions:
@@ -50,17 +50,17 @@ public partial class Banking : IDisposable
     
     // Runtime Configuration
     
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Banking_RuntimeConfig_SetCharValue(IntPtr ab, [MarshalAs(UnmanagedType.LPStr)] string? varName, [MarshalAs(UnmanagedType.LPStr)] string? value);
     
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? AB_Banking_RuntimeConfig_GetCharValue(IntPtr ab, [MarshalAs(UnmanagedType.LPStr)] string? varName, [MarshalAs(UnmanagedType.LPStr)] string? defaultValue);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Banking_RuntimeConfig_SetIntValue(IntPtr ab, [MarshalAs(UnmanagedType.LPStr)] string? varName, int value);
     
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern int AB_Banking_RuntimeConfig_GetIntValue(IntPtr ab, [MarshalAs(UnmanagedType.LPStr)] string? varName, int defaultValue);
 
     // ReSharper restore InconsistentNaming

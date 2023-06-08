@@ -14,25 +14,25 @@ public class GwenDate
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_Date_fromGregorian(int y, int m, int d);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_Date_fromJulian(int julian);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern void GWEN_Date_free(IntPtr gd);
     
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_Date_GetString(IntPtr gd);
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_Date_GetYear(IntPtr gd);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_Date_GetMonth(IntPtr gd);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_Date_GetDay(IntPtr gd);
     // ReSharper restore InconsistentNaming
 

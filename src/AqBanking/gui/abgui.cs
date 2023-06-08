@@ -8,16 +8,16 @@ public static class AqBankingGUI
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern IntPtr AB_Gui_new(IntPtr banking);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Gui_Extend(IntPtr gui, IntPtr banking);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Gui_Unextend(IntPtr gui);
 
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern int AB_Gui_SetCliCallbackForOpticalTan(IntPtr gui, [MarshalAs(UnmanagedType.LPStr)] string? tool);
     // ReSharper restore InconsistentNaming
 

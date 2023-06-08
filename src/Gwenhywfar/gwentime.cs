@@ -16,35 +16,35 @@ public class GwenTime
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_Time_new(int year, int month, int day, int hour, int min, int sec, int inUtc);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_Time_fromSeconds(uint s);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_Time_free(IntPtr t);
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern uint GWEN_Time_Seconds(IntPtr t);
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern double GWEN_Time_Milliseconds(IntPtr t);
 
     // Not necessary:
-    //[DllImport("libgwenhywfar.so")]
+    //[DllImport("libgwenhywfar")]
     //private static extern int GWEN_Time_Diff(IntPtr t1, IntPtr t0);
     //
-    //[DllImport("libgwenhywfar.so")]
+    //[DllImport("libgwenhywfar")]
     //private static extern int GWEN_Time_DiffSeconds(IntPtr t1, IntPtr t0);
     //
-    //[DllImport("libgwenhywfar.so")]
+    //[DllImport("libgwenhywfar")]
     //private static extern int GWEN_Time_Compare(IntPtr t1, IntPtr t0);
     //
-    //[DllImport("libgwenhywfar.so")]
+    //[DllImport("libgwenhywfar")]
     //private static extern int GWEN_Time_AddSeconds(IntPtr t1, uint secs);
     //
-    //[DllImport("libgwenhywfar.so")]
+    //[DllImport("libgwenhywfar")]
     //private static extern int GWEN_Time_SubSeconds(IntPtr t1, uint secs);
     // ReSharper restore InconsistentNaming
 

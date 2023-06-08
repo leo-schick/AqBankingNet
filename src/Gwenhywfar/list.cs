@@ -15,19 +15,19 @@ internal static class GwenList
     /// This number is counted in the list metadata, so this is a cheap
     /// operation.
     /// </summary>
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern uint GWEN_List_GetSize(IntPtr l);
 
     /// <summary>
     /// Return an iterator pointing to the first element in the list.
     /// </summary>
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern IntPtr GWEN_List_First(IntPtr l);
 
     /// <summary>
     /// Returns an iterator pointing to the last element in the list.
     /// </summary>
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern void GWEN_List_Last(IntPtr li);
     // ReSharper restore InconsistentNaming
 
@@ -39,16 +39,16 @@ internal static class GwenListEnumerator
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern IntPtr GWEN_ListIterator_new(IntPtr l);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern void GWEN_ListIterator_free(IntPtr li);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern IntPtr GWEN_ListIterator_Data(IntPtr li);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     public static extern IntPtr GWEN_ListIterator_DataRefPtr(IntPtr li);
     // ReSharper restore InconsistentNaming
 

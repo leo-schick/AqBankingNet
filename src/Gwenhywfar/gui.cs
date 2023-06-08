@@ -44,22 +44,22 @@ public class GwenGUI
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_Gui_new();
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_Gui_free(IntPtr n);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_Gui_SetGui(IntPtr gui);
 
     
     // Password Cache
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_Gui_SetPasswordDb(IntPtr gui, IntPtr dbPasswords, int persistent);
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_Gui_GetPasswordDb(IntPtr gui);
 
     // ReSharper restore InconsistentNaming

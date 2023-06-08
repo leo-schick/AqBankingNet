@@ -162,20 +162,20 @@ public class GwenDbNode
     // ReSharper disable InconsistentNaming
 
     // Iterating Through Groups
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_DB_GetFirstGroup(IntPtr n);
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_DB_GetNextGroup(IntPtr n);
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_DB_FindFirstGroup(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? name);
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_DB_FindNextGroup(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? name);
 
     // Variable Getter and Setter
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_DB_GetCharValue(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? path, int idx, [MarshalAs(UnmanagedType.LPStr)] string? defVal);
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_SetCharValue(IntPtr n, uint flags, [MarshalAs(UnmanagedType.LPStr)] string? path, [MarshalAs(UnmanagedType.LPStr)] string? val);
 
     // Reading and Writing From/To IO Layers
@@ -183,37 +183,37 @@ public class GwenDbNode
     // Not implemented:
     //  - GWEN_DB_ReadFromFastBuffer
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_DB_ReadFromIo(IntPtr n, IntPtr sio, uint dbflags);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_ReadFile(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string? fname, uint dbflags);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_ReadFromString(IntPtr n, [MarshalAs(UnmanagedType.LPStr)] string str, int len,
         uint dbflags);
     
     // Not implemented:
     //  - GWEN_DB_WriteToFastBuffer
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_DB_WriteToIo(IntPtr node, IntPtr sio, uint dbflags);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_DB_WriteFile(IntPtr node, [MarshalAs(UnmanagedType.LPStr)] string? fname, uint dbflags);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_DB_WriteToBuffer(IntPtr n, IntPtr buf, uint dbflags);
 
     // Group Handling
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_DB_GroupName(IntPtr n);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern void GWEN_DB_GroupRename(IntPtr n, string? newname);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern int GWEN_DB_IsGroup(IntPtr n);
     
     // ReSharper restore InconsistentNaming
@@ -461,10 +461,10 @@ public class GwenDbGroup : GwenDbNode
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_DB_Group_new([In, MarshalAs(UnmanagedType.LPStr)] string name);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_DB_Group_free(IntPtr n);
     // ReSharper restore InconsistentNaming
 

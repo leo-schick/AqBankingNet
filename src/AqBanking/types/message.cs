@@ -17,41 +17,41 @@ public class Message
 
     // ReSharper disable InconsistentNaming
     // Not used, see Enum.Parse<MessageSource>(p_str) 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern MessageSource AB_Message_Source_fromString([MarshalAs(UnmanagedType.LPStr)] string? p_s);
 
     // Not used, see ((MessageSource)p_i).ToString()
-    //[DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    //[DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     //private static extern string? AB_Message_Source_toString(MessageSource p_i);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Message_new();
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Message_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern MessageSource AB_Message_GetSource(IntPtr p_struct);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern uint AB_Message_GetUserId(IntPtr p_struct);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern uint AB_Message_GetAccountId(IntPtr p_struct);
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern string? AB_Message_GetSubject(IntPtr p_struct);
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern string? AB_Message_GetText(IntPtr p_struct);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Message_GetDateReceived(IntPtr p_struct);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Message_SetSource(IntPtr p_struct, MessageSource  p_src);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Message_SetUserId(IntPtr p_struct, uint p_src);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Message_SetAccountId(IntPtr p_struct, uint p_src);
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Message_SetSubject(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
-    [DllImport("libaqbanking.so", CharSet = CharSet.Ansi)]
+    [DllImport("libaqbanking", CharSet = CharSet.Ansi)]
     private static extern void AB_Message_SetText(IntPtr p_struct, [MarshalAs(UnmanagedType.LPStr)] string? p_src);
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Message_SetDateReceived(IntPtr p_struct, IntPtr p_src);
     // ReSharper restore InconsistentNaming
 

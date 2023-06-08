@@ -26,43 +26,43 @@ public class SyncIO : IDisposable
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     private static extern IntPtr GWEN_SyncIo_new([In, MarshalAs(UnmanagedType.LPStr)] string? typeName, IntPtr baseIo);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_SyncIo_free(IntPtr sio);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_SyncIo_Connect(IntPtr sio);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_SyncIo_Disconnect(IntPtr sio);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_SyncIo_Flush(IntPtr sio);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern int GWEN_SyncIo_Read(IntPtr sio, [MarshalAs(UnmanagedType.LPArray)] byte[] buffer, uint size);
 
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern uint GWEN_SyncIo_GetFlags(IntPtr sio);
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_SyncIo_SetFlags(IntPtr sio, uint fl);
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_SyncIo_AddFlags(IntPtr sio, uint fl);
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_SyncIo_SubFlags(IntPtr sio, uint fl);
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern SyncIOStatus GWEN_SyncIo_GetStatus(IntPtr sio);
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern void GWEN_SyncIo_SetStatus(IntPtr sio, SyncIOStatus st);
 
-    [DllImport("libgwenhywfar.so", CharSet = CharSet.Ansi)]
+    [DllImport("libgwenhywfar", CharSet = CharSet.Ansi)]
     [return: MarshalAs(UnmanagedType.LPStr)]
     private static extern string? GWEN_SyncIo_GetTypeName(IntPtr sio);
     
-    [DllImport("libgwenhywfar.so")]
+    [DllImport("libgwenhywfar")]
     private static extern IntPtr GWEN_SyncIo_GetBaseIo(IntPtr sio);
     // ReSharper restore InconsistentNaming
     

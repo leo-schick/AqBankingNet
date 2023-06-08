@@ -7,16 +7,16 @@ public partial class Banking
     #region DLL Imports
     
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Banking_GetAccountSpecList(IntPtr ab, ref IntPtr pAccountSpecList);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Banking_GetAccountSpecByUniqueId(IntPtr ab, UInt32 uniqueAccountId, ref IntPtr pAccountSpec);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern UInt32 AB_Banking_ReserveJobId(IntPtr ab);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Banking_SendCommands(IntPtr ab, IntPtr commandList, IntPtr ctx);
     // ReSharper restore InconsistentNaming
 

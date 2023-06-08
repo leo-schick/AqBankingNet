@@ -22,40 +22,40 @@ public class Balance
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_new();
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Balance_free(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_GetDate(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_GetValue(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern BalanceType AB_Balance_GetType(IntPtr p_struct);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Balance_SetDate(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Balance_SetValue(IntPtr p_struct, IntPtr p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Balance_SetType(IntPtr p_struct, BalanceType p_src);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern void AB_Balance_ReadDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Balance_WriteDb(IntPtr p_struct, IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_fromDb(IntPtr p_db);
     
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern int AB_Balance_toDb(IntPtr p_struct, IntPtr p_db);
     // ReSharper restore InconsistentNaming
 
@@ -126,7 +126,7 @@ public class BalanceList
     #region DLL Imports
 
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_List_GetByType(IntPtr p_list, BalanceType p_cmp);
     // ReSharper restore InconsistentNaming
 
@@ -181,13 +181,13 @@ internal class BalanceListEnumerator : IEnumerator<Balance>
     #region DLL Imports
     
     // ReSharper disable InconsistentNaming
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_List_FindFirstByType(IntPtr bl, BalanceType ty);
 
-    [DllImport("libaqbanking.so")]
+    [DllImport("libaqbanking")]
     private static extern IntPtr AB_Balance_List_FindNextByType(IntPtr bl, BalanceType ty);
 
-    //[DllImport("libaqbanking.so")]
+    //[DllImport("libaqbanking")]
     //private static extern IntPtr AB_Balance_List_GetLatestByType(IntPtr bl, BalanceType ty);
     // ReSharper restore InconsistentNaming
 
